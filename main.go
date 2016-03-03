@@ -9,7 +9,7 @@ import (
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/sign_up", account.User.Create).Methods("POST")
+	r.HandleFunc("/sign_up", account.Registration.Create).Methods("POST")
 	// HTTP Listening Port
 
 	http.Handle("/", r)
