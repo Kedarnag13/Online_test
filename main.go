@@ -2,7 +2,9 @@ package main
 
 import (
 	"github.com/Kedarnag13/Online_test/api/v1/controllers/account"
+	"github.com/Kedarnag13/Online_test/api/v1/controllers/exam"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 	"log"
 	"net/http"
 )
