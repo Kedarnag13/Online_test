@@ -1,5 +1,6 @@
 package models
 
+
 type Logical struct {
 	Id int
 	Data string
