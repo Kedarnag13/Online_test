@@ -7,15 +7,15 @@ import (
 // Registration struct [account/sign_up]
 type Register struct {
 	Id                    int    `valid:"numeric"`
-	Firstname             string `valid:"alphanum,required"`
-	Lastname              string `valid:"alphanum,required"`
+	First_name            string `valid:"alphanum,required"`
+	Last_name             string `valid:"alphanum,required"`
 	Email                 string `valid:"email,required"`
 	Password              string `valid:"alphanum,required"`
 	Password_confirmation string `valid:"alphanum,required"`
+	College								string `valid:"alphanum,required"`
 	Branch                string `valid:"alphanum",required`
 	Year_of_passing				string `valid:"alphanum",required`
 	Phone_number					string `valid:"alphanum,required"`
-	Auth_token          	string `valid:"alphanum,required"`
 }
 
 
@@ -30,6 +30,15 @@ type SignIn struct {
 	User    Register
 	Session Session
 }
+
+
+// Session struct [account/session]
+type Session struct {
+	SessionId int
+	StartTime time.Time
+	Auth_token string
+}
+
 // Sign_up struct end
 
 
@@ -54,11 +63,6 @@ type InviteEmail struct {
 	RecieverEmail string `valid:"email,required"`
 }
 
-// Session struct [account/session]
-type Session struct {
-	SessionId int
-	StartTime time.Time
-}
 
 
 // Message struct [controllers/account]

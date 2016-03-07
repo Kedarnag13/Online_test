@@ -4,6 +4,10 @@ import (
 "database/sql"
 "encoding/json"
 "fmt"
+"strconv"
+"time"
+"crypto/md5"
+"io"
 "github.com/Kedarnag13/Online_test/api/v1/models"
 "github.com/asaskevich/govalidator"
 "github.com/Kedarnag13/Online_test/api/v1/controllers"
@@ -12,7 +16,7 @@ _ "github.com/lib/pq"
 "log"
 "net/http"
 "regexp"
-"time"
+"encoding/hex"
 )
 
 type registrationController struct{}
@@ -55,7 +59,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 		if err != nil {
 			log.Fatal(err)
 		}
-		if u.Firstname == "" || u.Lastname == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" || u.Auth_token == "" {
+		if u.First_name == "" || u.Last_name == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" {
 
 			_, err := govalidator.ValidateStruct(u)
 			if err != nil {
@@ -114,36 +118,6 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			goto create_user_end
 		}
 
-
-		session_response, err := db.Query("SELECT auth_token,user_id from sessions")
-		if err != nil {
-			log.Fatal(err)
-		}
-		defer session_response.Close()
-
-		for session_response.Next() { // Check if the session already exist
-			var auth_token string
-			var id int
-			err := session_response.Scan(&auth_token, &id)
-			if err != nil {
-				log.Fatal(err)
-			}
-			if auth_token == u.Auth_token {
-				b, err := json.Marshal(models.ErrorMessage{
-					Success: "false",
-					Error:   "Session already Exist",
-					})
-
-				if err != nil {
-					log.Fatal(err)
-				}
-				rw.Header().Set("Content-Type", "application/json")
-				rw.Write(b)
-				fmt.Println("Session already Exist")
-				goto create_user_end
-			}
-		}
-
 		// Insert into users table ======================================
 
 		for fetch_id.Next() { 
@@ -155,7 +129,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			}
 			id = id + 1
 
-			var sStmt string = "insert into users (id, first_name, last_name, email, branch, phone_number, year_of_passing, password, password_confirmation) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
+			var sStmt string = "insert into users (id, first_name, last_name, email, college, branch, phone_number, year_of_passing, password, password_confirmation) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)"
 			db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
 			if err != nil {
 				log.Fatal(err)
@@ -172,7 +146,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			encrypt_password := controllers.Encrypt(key, password)
 			encrypt_password_confirmation := controllers.Encrypt(key, confirm_password)
 
-			user_res, err := stmt.Exec(id, u.Firstname, u.Lastname, u.Email, u.Branch, u.Phone_number, u.Year_of_passing, encrypt_password, encrypt_password_confirmation)
+			user_res, err := stmt.Exec(id, u.First_name, u.Last_name, u.Email, u.College, u.Branch, u.Phone_number, u.Year_of_passing, encrypt_password, encrypt_password_confirmation)
 			if err != nil || user_res == nil {
 				log.Fatal(err)
 			}
@@ -180,14 +154,17 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 
 			// Create Session for the User =========================================
 
-			
-			var session string = "insert into sessions (start_time, user_id,auth_token) values ($1,$2,$3)"
+			auth_string := strconv.FormatInt(time.Now().Unix(), 10)
+			h := md5.New()
+			io.WriteString(h, auth_string)
+			auth_token := hex.EncodeToString(h.Sum(nil))
+			var session string = "insert into sessions (start_time, user_id, auth_token) values ($1,$2,$3)"
 			ses, err := db.Prepare(session)
 			if err != nil {
 				log.Fatal(err)
 			}
 			start_time := time.Now()
-			session_res, err := ses.Exec(start_time, id, u.Auth_token)
+			session_res, err := ses.Exec(start_time, id, string(auth_token))
 			if err != nil || session_res == nil {
 				log.Fatal(err)
 			}
@@ -195,13 +172,13 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			fmt.Printf("StartTime: %v\n", time.Now())
 			fmt.Println("User created Successfully!")
 
-			user := models.Register{id, u.Firstname, u.Lastname, u.Email, u.Password, u.Password_confirmation, u.Branch, u.Year_of_passing, u.Phone_number, u.Auth_token}
+			user := models.Register{id, u.First_name, u.Last_name, u.Email, u.Password, u.Password_confirmation, u.College, u.Branch, u.Year_of_passing, u.Phone_number}
 
 			b, err := json.Marshal(models.SignIn{
 				Success: "true",
 				Message: "User created Successfully!",
 				User:    user,
-				Session: models.Session{id, start_time},
+				Session: models.Session{id, start_time, string(auth_token)},
 				})
 
 			if err != nil || res == nil {
