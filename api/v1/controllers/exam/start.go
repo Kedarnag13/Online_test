@@ -7,180 +7,60 @@ import (
 	_ "github.com/lib/pq"
 	"log"
 	"net/http"
+	"github.com/gorilla/mux"
+		"strconv"
 )
 
 type examController struct{}
 
 var Exam examController
 
-func (e examController) Logical(rw http.ResponseWriter, req *http.Request) {
+func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
+
+	vars := mux.Vars(req)
+	id := vars["id"]
+	section_id, err := strconv.Atoi(id)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	logicals, err := db.Exec("CREATE TABLE IF NOT EXISTS logicals (data jsonb)")
-	if err != nil || logicals == nil {
-		log.Fatal(err)
-	}
-
-	questions, err := db.Query("SELECT data FROM logicals")
+	questions, err:= db.Exec("CREATE TABLE IF NOT EXISTS questions(id int, title text, option_1 varchar(100), option_2 varchar(100), option_3 varchar(100), option_4 varchar(100), answer varchar(100), section_id int, CONSTRAINT section_id_key FOREIGN KEY(section_id) REFERENCES sections (id), PRIMARY KEY(id))")
 	if err != nil || questions == nil {
 		log.Fatal(err)
 	}
-	defer questions.Close()
-	columns, err := questions.Columns() // Will return the columns
-  if err != nil {
-      log.Fatal(err)
-  }
-  count := len(columns) // Length of the columns
-  tableData := make([]map[string]interface{}, 0) // keys to those columns
-  values := make([]interface{}, count) // values of the respective column
-  valuePtrs := make([]interface{}, count) // pointing to those columns
-  for questions.Next() {
-      for i := 0; i < count; i++ {
-          valuePtrs[i] = &values[i]
-      }
-      questions.Scan(valuePtrs...)
-      entry := make(map[string]interface{})
-      for i, col := range columns {
-          var v interface{}
-          val := values[i]
-          b, ok := val.([]byte)
-          if ok {
-              v = string(b)
-          } else {
-              v = val
-          }
-          entry[col] = v
-      }
-      tableData = append(tableData, entry) // Adding every entry that we get from the table into tableData
-  }
-  jsonData, err := json.Marshal(tableData)
-  if err != nil {
-      log.Fatal(err)
-  }
-	b, err := json.Marshal(models.Verbal{
-			Data: string(jsonData),
-		})
-		if err != nil {
+	get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4, answer FROM questions WHERE section_id=$1", section_id)
+	if err != nil || get_questions == nil {
+		log.Fatal(err)
+	}
+	defer get_questions.Close()
+
+	questions_section := []models.Question{}
+
+	for get_questions.Next() {
+	var id int
+	var title string
+	var question_details models.Question
+	var option_1 string
+	var option_2 string
+	var option_3 string
+	var option_4 string
+	var answer string
+	err := get_questions.Scan(&id, &title, &option_1, &option_2, &option_3, &option_4, &answer)
+	if err != nil {
 			log.Fatal(err)
 		}
-		rw.Header().Set("Content-Type", "application/json")
-		rw.Write(b)
-}
-
-func (e examController) Aptitude(rw http.ResponseWriter, req *http.Request) {
-
-	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
-	if err != nil {
-		log.Fatal(err)
+		question_details = models.Question{id, title, option_1, option_2, option_3, option_4, answer}
+		questions_section = append(questions_section, question_details)
 	}
-
-	aptitudes, err := db.Exec("CREATE TABLE IF NOT EXISTS aptitudes (data jsonb)")
-	if err != nil || aptitudes == nil {
-		log.Fatal(err)
-	}
-
-	questions, err := db.Query("SELECT data FROM aptitudes")
-	if err != nil || questions == nil {
-		log.Fatal(err)
-	}
-	defer questions.Close()
-	columns, err := questions.Columns() // Will return the columns
-  if err != nil {
-      log.Fatal(err)
-  }
-  count := len(columns) // Length of the columns
-  tableData := make([]map[string]interface{}, 0) // keys to those columns
-  values := make([]interface{}, count) // values of the respective column
-  valuePtrs := make([]interface{}, count) // pointing to those columns
-  for questions.Next() {
-      for i := 0; i < count; i++ {
-          valuePtrs[i] = &values[i]
-      }
-      questions.Scan(valuePtrs...)
-      entry := make(map[string]interface{})
-      for i, col := range columns {
-          var v interface{}
-          val := values[i]
-          b, ok := val.([]byte)
-          if ok {
-              v = string(b)
-          } else {
-              v = val
-          }
-          entry[col] = v
-      }
-      tableData = append(tableData, entry) // Adding every entry that we get from the table into tableData
-  }
-  jsonData, err := json.Marshal(tableData)
-  if err != nil {
-      log.Fatal(err)
-  }
-	b, err := json.Marshal(models.Verbal{
-			Data: string(jsonData),
-		})
-		if err != nil {
-			log.Fatal(err)
-		}
-		rw.Header().Set("Content-Type", "application/json")
-		rw.Write(b)
-}
-
-func (e examController) Verbal(rw http.ResponseWriter, req *http.Request) {
-
-	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	verbals, err := db.Exec("CREATE TABLE IF NOT EXISTS verbals (data jsonb)")
-	if err != nil || verbals == nil {
-		log.Fatal(err)
-	}
-
-	questions, err := db.Query("SELECT data FROM verbals")
-	if err != nil || questions == nil {
-		log.Fatal(err)
-	}
-	defer questions.Close()
-
-	columns, err := questions.Columns() // Will return the columns
-  if err != nil {
-      log.Fatal(err)
-  }
-  count := len(columns) // Length of the columns
-  tableData := make([]map[string]interface{}, 0) // keys to those columns
-  values := make([]interface{}, count) // values of the respective column
-  valuePtrs := make([]interface{}, count) // pointing to those columns
-  for questions.Next() {
-      for i := 0; i < count; i++ {
-          valuePtrs[i] = &values[i]
-      }
-      questions.Scan(valuePtrs...)
-      entry := make(map[string]interface{})
-      for i, col := range columns {
-          var v interface{}
-          val := values[i]
-          b, ok := val.([]byte)
-          if ok {
-              v = string(b)
-          } else {
-              v = val
-          }
-          entry[col] = v
-      }
-      tableData = append(tableData, entry) // Adding every entry that we get from the table into tableData
-  }
-  jsonData, err := json.Marshal(tableData)
-  if err != nil {
-      log.Fatal(err)
-  }
-	b, err := json.Marshal(models.Verbal{
-			Data: string(jsonData),
-		})
+	b, err := json.Marshal(models.QuestionResponse{
+			Success:     "true",
+			Message:     "Questions per section",
+			QuestionList:	questions_section,
+			})
 		if err != nil {
 			log.Fatal(err)
 		}

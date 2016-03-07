@@ -1,14 +1,26 @@
 package models
 
 
-type Logical struct {
-	Data string
+// type Logical struct {
+// 	Data string
+// }
+//
+// type Aptitude struct {
+// 	Data string
+// }
+
+type Question struct {
+	Id int
+	Title string
+	Option_1 string
+	Option_2 string
+	Option_3 string
+	Option_4 string
+	Answer string
 }
 
-type Aptitude struct {
-	Data string
-}
-
-type Verbal struct {
-	Data string
+type QuestionResponse struct {
+	Success string
+	Message string
+	QuestionList []Question
 }

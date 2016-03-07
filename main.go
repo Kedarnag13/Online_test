@@ -7,17 +7,14 @@ import (
 	"github.com/rs/cors"
 	"log"
 	"net/http"
-	"github.com/rs/cors"
 )
 
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/sign_up", account.Registration.Create).Methods("POST")
-	r.HandleFunc("/logicals", exam.Exam.Logical).Methods("GET")
-	r.HandleFunc("/aptitudes", exam.Exam.Aptitude).Methods("GET")
-	r.HandleFunc("/verbals", exam.Exam.Verbal).Methods("GET")
+	r.HandleFunc("/questions/{id:[0-9]+}", exam.Exam.Questions).Methods("GET")
 	// HTTP Listening Port
-	
+
 	handler := cors.Default().Handler(r)
 	http.Handle("/", handler)
 	log.Println("main : Started : Listening on: http://localhost:3000 ...")
