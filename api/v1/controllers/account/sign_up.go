@@ -77,6 +77,18 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			rw.Header().Set("Content-Type", "application/json")
 			rw.Write(b)
 			goto create_user_end
+		} else if u.Password != u.Password_confirmation {
+			flag = 0
+			b, err := json.Marshal(models.EmailErrorMessage{
+				Success: "false",
+				Error:   "Password and confirm password do not match!",
+				})
+			if err != nil {
+				log.Fatal(err)
+			}
+			rw.Header().Set("Content-Type", "application/json")
+			rw.Write(b)
+			goto create_user_end
 		}
 	}
 	if flag == 1 {
@@ -105,7 +117,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 
 		// password and confirm password does not match =====================
 
-		if u.Password != u.Password_confirmation { 
+		if u.Password != u.Password_confirmation {
 			b, err := json.Marshal(models.ErrorMessage{
 				Success: "false",
 				Error:   "Password and Password_confirmation do not match",
@@ -120,7 +132,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 
 		// Insert into users table ======================================
 
-		for fetch_id.Next() { 
+		for fetch_id.Next() {
 			var id int
 			err = fetch_id.Scan(&id)
 

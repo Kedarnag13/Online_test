@@ -18,5 +18,5 @@ func main() {
 	handler := cors.Default().Handler(r)
 	http.Handle("/", handler)
 	log.Println("main : Started : Listening on: http://localhost:3000 ...")
-	log.Fatal(http.ListenAndServe("0.0.0.0:3000", nil))
+	log.Fatal(http.ListenAndServe("0.0.0.0:3010", nil))
 }
