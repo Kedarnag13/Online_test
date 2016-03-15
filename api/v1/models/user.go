@@ -15,7 +15,7 @@ type Register struct {
 	College								string `valid:"alphanum,required"`
 	Branch                string `valid:"alphanum",required`
 	Year_of_passing				string `valid:"alphanum",required`
-	Phone_number					string `valid:"alphanum,required"`
+	Phone_number					int 	 `valid:"numeric,required"`
 }
 
 

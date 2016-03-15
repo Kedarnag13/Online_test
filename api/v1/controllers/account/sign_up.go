@@ -59,7 +59,8 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 		if err != nil {
 			log.Fatal(err)
 		}
-		if u.First_name == "" || u.Last_name == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" {
+		fmt.Println("phone_number:",u.Phone_number)
+		if u.First_name == "" || u.Last_name == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" || u.College == "" || u.Year_of_passing == ""{
 
 			_, err := govalidator.ValidateStruct(u)
 			if err != nil {

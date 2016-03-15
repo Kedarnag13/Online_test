@@ -19,8 +19,24 @@ type Question struct {
 	Answer string
 }
 
-type QuestionResponse struct {
+type QuestionResponseMessage struct {
 	Success string
 	Message string
 	QuestionList []Question
+}
+type QuestionResponse struct {
+	SectionId int
+	Questions []Answer
+}
+
+type Answer struct {
+	QuestionId int
+	AnswerOption string
+}
+
+
+type Result struct {
+	Section int
+	TotalQuestions int
+	Score int
 }

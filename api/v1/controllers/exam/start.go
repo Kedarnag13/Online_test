@@ -56,7 +56,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 		question_details = models.Question{id, title, option_1, option_2, option_3, option_4, answer}
 		questions_section = append(questions_section, question_details)
 	}
-	b, err := json.Marshal(models.QuestionResponse{
+	b, err := json.Marshal(models.QuestionResponseMessage{
 			Success:     "true",
 			Message:     "Questions per section",
 			QuestionList:	questions_section,
