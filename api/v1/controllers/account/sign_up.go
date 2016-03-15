@@ -151,6 +151,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			if err != nil {
 				log.Fatal(err)
 			}
+			defer stmt.Close()
 
 
 			key := []byte("traveling is fun")

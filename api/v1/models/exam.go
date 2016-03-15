@@ -26,6 +26,7 @@ type QuestionResponseMessage struct {
 }
 type QuestionResponse struct {
 	SectionId int
+	UserId int
 	Questions []Answer
 }
 
