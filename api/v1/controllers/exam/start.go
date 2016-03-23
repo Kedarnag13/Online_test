@@ -40,8 +40,6 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 
 	questions_section := []models.Question{}
 
-	options := make([]string, 4)
-
 	for get_questions.Next() {
 	var id int
 	var title string
@@ -49,6 +47,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 	var option_2 string
 	var option_3 string
 	var option_4 string
+	var options []string
 
 	var question_details models.Question
 
@@ -56,10 +55,10 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 			log.Fatal(err)
 		}
-		options[0] = option_1
-		options[1] = option_2
-		options[2] = option_3
-		options[3] = option_4
+		options = append(options, option_1)
+		options = append(options, option_2)
+		options = append(options, option_3)
+		options = append(options, option_4)
 
 		question_details = models.Question{id, title, options}
 		questions_section = append(questions_section, question_details)
