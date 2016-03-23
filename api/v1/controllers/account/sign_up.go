@@ -60,7 +60,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			log.Fatal(err)
 		}
 		fmt.Println("phone_number:",u.Phone_number)
-		if u.First_name == "" || u.Last_name == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" || u.College == "" || u.Year_of_passing == ""{
+		if u.First_name == "" || u.Last_name == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" || u.College == "" || u.Year_of_passing == "" {
 
 			_, err := govalidator.ValidateStruct(u)
 			if err != nil {
@@ -92,6 +92,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			goto create_user_end
 		}
 	}
+
 	if flag == 1 {
 		for res.Next() { // email already exist condition
 			var email string

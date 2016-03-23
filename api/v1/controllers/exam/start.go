@@ -32,7 +32,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 	if err != nil || questions == nil {
 		log.Fatal(err)
 	}
-	get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4, answer FROM questions WHERE section_id=$1", section_id)
+	get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4 FROM questions WHERE section_id=$1 order by random() LIMIT 20", section_id)
 	if err != nil || get_questions == nil {
 		log.Fatal(err)
 	}
@@ -40,20 +40,28 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 
 	questions_section := []models.Question{}
 
+	options := make([]string, 4)
+
 	for get_questions.Next() {
 	var id int
 	var title string
-	var question_details models.Question
 	var option_1 string
 	var option_2 string
 	var option_3 string
 	var option_4 string
-	var answer string
-	err := get_questions.Scan(&id, &title, &option_1, &option_2, &option_3, &option_4, &answer)
+
+	var question_details models.Question
+
+	err := get_questions.Scan(&id, &title, &option_1, &option_2, &option_3, &option_4)
 	if err != nil {
 			log.Fatal(err)
 		}
-		question_details = models.Question{id, title, option_1, option_2, option_3, option_4, answer}
+		options[0] = option_1
+		options[1] = option_2
+		options[2] = option_3
+		options[3] = option_4
+
+		question_details = models.Question{id, title, options}
 		questions_section = append(questions_section, question_details)
 	}
 	b, err := json.Marshal(models.QuestionResponseMessage{
@@ -66,4 +74,5 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 		}
 		rw.Header().Set("Content-Type", "application/json")
 		rw.Write(b)
+		db.Close()
 }

@@ -8,6 +8,7 @@ _ "github.com/lib/pq"
 "log"
 "net/http"
 "io/ioutil"
+"fmt"
 )
 
 type resultController struct{}
@@ -29,8 +30,9 @@ log.Fatal(err)
 }
 
 score := 0
-
+fmt.Println("section_id:",u.SectionId)
 for _, i:= range u.Questions {
+	fmt.Println("questions:",i.QuestionId)
 check_section, err := db.Query("SELECT answer FROM questions WHERE section_id = $1 AND id = $2",u.SectionId,i.QuestionId)
 if err != nil || check_section == nil {
 	log.Fatal(err)
@@ -42,13 +44,13 @@ for check_section.Next(){
 	if err != nil {
 		log.Fatal(err)
 	}
-	if answer == i.AnswerOption {
+	if answer == i.Answer {
 		score = score + 1
 	}
 }
 }
 if u.SectionId == 1 {
-var insert_result string = "insert into results (user_id, section_1,) values ($1,$2)"
+var insert_result string = "insert into results (user_id, section_1) values ($1,$2)"
 
 prepare_insert_result, err := db.Prepare(insert_result)
 if err != nil {
@@ -92,7 +94,7 @@ if err != nil || insert_result_exec == nil {
 			log.Fatal(err)
 		}
 		defer update_result.Close()
-		
+
 	}
 
 	b, err := json.Marshal(models.Result{
