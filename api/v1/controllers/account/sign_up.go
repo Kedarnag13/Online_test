@@ -59,7 +59,8 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 		if err != nil {
 			log.Fatal(err)
 		}
-		if u.First_name == "" || u.Last_name == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" {
+		fmt.Println("phone_number:",u.Phone_number)
+		if u.First_name == "" || u.Last_name == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" || u.College == "" || u.Year_of_passing == "" {
 
 			_, err := govalidator.ValidateStruct(u)
 			if err != nil {
@@ -77,8 +78,21 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			rw.Header().Set("Content-Type", "application/json")
 			rw.Write(b)
 			goto create_user_end
+		} else if u.Password != u.Password_confirmation {
+			flag = 0
+			b, err := json.Marshal(models.EmailErrorMessage{
+				Success: "false",
+				Error:   "Password and confirm password do not match!",
+				})
+			if err != nil {
+				log.Fatal(err)
+			}
+			rw.Header().Set("Content-Type", "application/json")
+			rw.Write(b)
+			goto create_user_end
 		}
 	}
+
 	if flag == 1 {
 		for res.Next() { // email already exist condition
 			var email string
@@ -105,7 +119,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 
 		// password and confirm password does not match =====================
 
-		if u.Password != u.Password_confirmation { 
+		if u.Password != u.Password_confirmation {
 			b, err := json.Marshal(models.ErrorMessage{
 				Success: "false",
 				Error:   "Password and Password_confirmation do not match",
@@ -120,7 +134,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 
 		// Insert into users table ======================================
 
-		for fetch_id.Next() { 
+		for fetch_id.Next() {
 			var id int
 			err = fetch_id.Scan(&id)
 
@@ -138,6 +152,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			if err != nil {
 				log.Fatal(err)
 			}
+			defer stmt.Close()
 
 
 			key := []byte("traveling is fun")
