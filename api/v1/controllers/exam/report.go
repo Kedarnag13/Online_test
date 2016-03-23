@@ -71,7 +71,7 @@ if err != nil || insert_result_exec == nil {
 	}
 	defer update_result.Close()
 	} else {
-		fetch_score, err := db.Query("SELECT section_1, section_2 from results where user_id = $1")
+		fetch_score, err := db.Query("SELECT section_1, section_2 from results where user_id = $1", u.UserId)
 		if err != nil || fetch_score == nil {
 			log.Fatal(err)
 		}
