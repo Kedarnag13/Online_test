@@ -52,6 +52,7 @@ func (e feedbackController) Create(rw http.ResponseWriter, req *http.Request) {
 		if err != nil || feedback_prepare_stmt == nil {
 			panic(err)
 		}
+		defer feedback_prepare_stmt.Close()
 		feedback_exec, err := 	feedback_prepare_stmt.Exec(f.Verbal_section, f.Logical_section, f.Aptitude_section, f.Description)
 		if err != nil || feedback_exec == nil {
 			panic(err)
