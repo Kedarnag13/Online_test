@@ -1,0 +1,200 @@
+id,title,option_1,option_2,option_3,option_4,answer,section_id
+1,The difference between the local value and face value of 7 in the numeral 657903 is:,0,7896,6993,903,6993,2
+2,"The sum of three prime numbers is 100. If one of them exceeds another by 36, then one of the numbers is:",7,29,41,67,67,2
+3,(51+52+53+-----------+100) is equal to:,2525,2975,3225,3775,3775,2
+4,"5b2 is a three-digit number with b as a missing digit. If the number is divisible by 6, the missing digit is:",2,3,6,7,2,2
+5,"How many of the following numbers are divisible by 3 but not by 9?
+2133; 2343; 3474; 4131; 5286; 5340; 6336; 7347; 8115; 9276",5,6,7,None of these,6,2
+6,"The value of P, when 4864 x 9P2 is divisible by 12, is:",2,5,8,None of these,None of these,2
+7,"How many of the following numbers are divisible by 132?
+264, 396, 462, 792, 968, 2178, 5184, 6336",4,5,6,7,4,2
+8,The largest natural number which exactly divides the product of any four consecutive natural numbers is:,6,12,24,120,24,2
+9,The least number which must be subtracted from 6709 to make it exactly divisible by 9 is:,2,3,4,5,4,2
+10,"The least number by which 72 must be multiplied in order to produce a multiple of 112, is:",6,12,14,18,14,2
+11,A train running at the speed of 60 km/hr crosses a pole in 9 seconds. What is the length of the train?,120m,1200m,180m,200m,150m,2
+12,"A train 125 m long passes a man, running at 5 km/hr in the same direction in which the train is going, in 10 seconds. The speed of the train is:",45 km/hr,50 km/hr,54 km/hr,55 km/hr,50 km/hr,2
+13,"The length of the bridge, which a train 130 metres long and travelling at 45 km/hr can cross in 30 seconds, is:",200 m,225 m,245 m,300 m,245 m,2
+14,Two trains running in opposite directions cross a man standing on the platform in 27 seconds and 17 seconds respectively and they cross each other in 23 seconds. The ratio of their speeds is:,1 : 3,3 : 2,3 : 4,None of these,3 : 2,2
+15,"	
+A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?",240,120,420,669,240,2
+16,"In a 100 m race, A can give B 10 m and C 28 m. In the same race B can give C",10,20,30,40,20,2
+17,A and B take part in 100 m race. A runs at 5 kmph. A gives B a start of 8 m and still beats him by 8 seconds. The speed of B is:,4.14,5.14,6.14,3.14,4.14,2
+18,"In a 500 m race, the ratio of the speeds of two contestants A and B is 3 : 4. A has a start of 140 m. Then, A wins by:",20,30,40,50,20,2
+19,"In a 100 m race, A beats B by 10 m and C by 13 m. In a race of 180 m, B will beat C by:",4,5,6,7,6,2
+20,"At a game of billiards, A can give B 15 points in 60 and A can give C to 20 points in 60. How many points can B give C in a game of 90?",10 points,20 points,30 points,40 points,10 points,2
+21,A number when divided by 6 leaves a remainder 3. When the square of the same number is divided by 6; the remainder is:,0,1,2,3,3,2
+22,A number when divided successively in order by 4; 5 and 6. The remainders were respectively 2; 3 and 4. The number is:,214,476,954,1908,214,2
+23,A number when divided by 3 leaves a remainder 1. When the quotient is divided by 2; it leaves a remainder 1. What will be the remainder when the number is divided by 6?,2,3,4,5,4,2
+24,A number when divided b the sum of 555 and 445 gives two times their difference as quotient and 30 as the remainder. The number is:,1220,1250,22003,220030,220030,2
+25,The profit obtained by selling an article for Rs. 56 is the same as the loss obtained by selling it for Rs. 42. What is the cost price of the article?,RS.40,RS.50,RS.49,None of these,Rs 49,2
+26,An article is sold at a certain price. By selling it at 2/3 of that price one loses 10%. Find the gain percent at original price.,15%,35%,25%,50%,35%,2
+27,"A man bought a horse and a carriage for Rs. 3000. He sold the horse at a gain of 20% and the carriage at a loss of 10%, thereby gaining 2% on the whole. Find the cost of the horse.",2200,1800,1200,1000,1200,2
+28,The price of a jewel; passing through three hands; rises on the whole by 65%. If the first and second sellers earned 20% and 25% profit respectively; find the percentage profit earned by the third seller.,10%,22%,18%,12%,10%,2
+29,At what percentage above the C.P must an article be marked so as to gain 33% after allowing a customer a discount of 5%?,38%,40%,43%,48%,40%,2
+30,A grocer purchased 80 kg of rice at Rs. 13.50 per kg and mixed it with 120 kg rice at Rs. 16 per kg. At what rate per kg should he sell the mixture to gain 16%?,19,20.5,17.4,21.6,17.4,2
+31,On an article ;the manufacturer gains 10%; the wholesale dealer 15%; and the retailer 25%; If its retail price is 1265; what is the cost of its production?,1000,800,1100,900,800,2
+32,A trader has 50 kg of rice; a part of which he sells at 14% profit and rest at 6% loss. On the whole his loss is 4% . What is the quantity sold at 14% profit and that at 6% loss?,5 and 45 kg,10 and 40 kg,15 and 35 kg,20 and 30 kg,5 and 45 kg,2
+33,The cost price of two types of tea are Rs. 180 per kg and Rs. 200 per kg respectively. On mixing them in the ratio 5:3; the mixture is sold at Rs. 210 per kg . In the whole transaction; the gain percent is,10%,11%,12%,13%,12%,2
+34,A trader marks his product 40% above its cost. He sells the product on credit and allows 10% trade discount. In order to ensure prompt payment; he further gives 10% discount on the reduced price. If he makes a profit of Rs. 67 from the transaction; then the cost price of the product is,300,400,325,500,500,2
+35,A retailer sold two articles at a profit percentage of 10% each. The cost price of one article is three – fourth that of the other. Find the ratio of the selling price of the dearer article to that of the cheaper one,4:03,3:04,41:31:00,51:41:00,4:03,2
+36,If the S.P of Rs. 24 results in a 20% discount on the list price; What S.P would result in a 30% discount on the list price?,27,21,20,9,21,2
+37,Anil bought a T.V with 20% discount on the labeled price . Had he bought it with 25% discount; he would have saved Rs. 500. At what price did he buy the T.V?,"16,000","12,000","10,000",5000,"10,000",2
+38,A single discount equivalent to a series of 30%; 20%; and 10% is,50%,49.60%,49.40%,51%,49.60%,2
+39,Ramya sells an article at three- fourth of its list price and makes a loss of 10%. Find the profit percentage if she sells at the list price.,20%,25%,15%,None of these,20%,2
+40,The ratio of the selling prices of three articles is 5:6:9 and the ratio of their cost prices is 4:5:8 respectively. What is the ratio of their respective percentages of profit; if the profit on the first and the last articles is the same?,4:05:06,10:08:05,5:06:09,Cannot be determined,10:08:05,2
+41,With the money I have ; I can buy 50 pens or 150 pencils. I kept 10% aside for taxi fare. With the remaining ; I purchased 54 pencils and P pens. What is the value of P?,32,30,27,None of these,27,2
+42,"The selling price of 13 apples is the same as the cost price of 26 mangoes . The selling price of 16 mangoes is the same as the cost price of 12 apples. If the profit on selling mangoes is 20%, What is the profit on selling apples?",20%,25%,40%,Cannot be determined,25%,2
+43,If a man rows at the rate of 6 kmph in still water and his rate aginst the current is 4.5 kmph; then the man’s rate along the current is,6 kmph,7.5 kmph,6.5 kmph,8 kmph,7.5 kmph,2
+44,A boat moves upstream at the rate of 1 km in 20 minutes and down stream 1 km in 12 minutes. The speed of the current is :,1 kmph,2 kmph,3 kmph,2.5 kmph,1 kmph,2
+45,A man can row a boat at 10 kmph in still water and the speed of the stream is 8 kmph. What is the time taken to row a distance of 90 km down the stream ?,8 hrs,5 hrs,15 hrs,20 hrs,5 hrs,2
+46,If Athul rows 16 km upstream and 24 km down steam taking 4 hours each; then the speed of the,1 kmph,2 kmph,1.5 kmph,12 kmph,1 kmph,2
+47,Find the average of first 40 natural numbers.,20.5,18,19.5,19,20.5,2
+48,Find the average of all the numbers between 6 and 34 which are divisible by 5,18,20,24,30,20,2
+49,The average of 2;7;6 and x is 5 and the average of 18;1;6;x and y is 10. What is the value of y?,5,10,20,30,20,2
+50,The average of 7 consecutive numbers is 20. The largest of these numbers is,20,22,23,24,23,2
+51,Nine persons went to a hotel for taking their meals. Eight of them spent Rs 12 each on their meals and the ninth spent Rs.8 more than the average expenditure of all the nine. What was the total money spent by them?,117,180,150,200,117,2
+52,"In seven given numbers, the average of first four numbers is 4 and that of the last four numbers is also 4. If the average of these seven numbers is 3; the fourth number is",3,4,7,11,11,2
+53,"The average weight of 29 students is 28 kg. By the admission of a new student, the average weight is reduced to 27.8 kg. The weight of the new student is",22 kg,21.6 kg,22.4 kg,21 kg,22 Kg,2
+54,The average age of a committee of  8 members is 40 years. A member aged 55 years retired and his place was taken by another member aged 39 years . The average age of present committee  is;,39 years,38 years,36 years,35 years,38 years,2
+55,Eight persons participated in a shooting competition. The top score in the competition is 85 points. Had the top score been 92 points instead of 85 points; the average score would have been 84. Find the number of points actually scored in the competition.,645,655,665,636,665,2
+56,Find the average of all even numbers upto 75.,35,36,38,34,38,2
+57,The average mark of a class of twenty students is 64. If three students whose marks are 32;28 and 34 are removed ; then find the approximate average mark of the remaining students of the class.,71,74,57,70,70,2
+58,The number of students in the three sections of a class are in the ratio 2:3:4. The average marks scored in each of these sections is in the ratio 4:3:1. By what percent is the average mark of the second section more than the class average?,23.27%,28.57%,32.38%,36.74%,28.57%,2
+59,The average age of 40 students is 8 years. If the age of teacher is also included ; then their average age increases by half a year. What is the age of the teacher?,45 years,48.5 years,28.5 years,26.5 years,28.5 years,2
+60,Eight kilograms of rice costing Rs. 16 per kg is mixed with four kilograms of rice costing Rs. 22 per kg. What is the average price of the mixture?,20,18,16,19,18,2
+61,How many kilograms of tea powder costing Rs. 31 per kg be mixed with 36 kilograms of tea powder costing Rs. 43 per kg; such that the mixture when sold at Rs. 44 per kg gives profit of 10%?,12,15,20,10,12,2
+62,A solution of 66 litres contains milk and water in the ratio 7:x. If four litres of water is added to the solution; the ratio becomes 3:2; find the value of x?,8,5,3,4,4,2
+63,A single refined oil can contains 20% impurities. After double – refining it contains 4% impurities. How much of double- refined oil can be obtained from 30 litres of single refined oil?,24 liters,24.8 liters,25 liters,25.5 liters,25 liters,2
+64,A mixture of 20 kg of spirit and water contains 10% water. How much water must be added to this mixture to raise the percentage of water to 25%,4,5,8,30,a.,2
+65,"A can contains a mixture of two liquids A and B in the ratio 7:5. When 9 litres of mixture are drawn off and the can is filled with B, the ratio of A and B becomes 7:9. How many litres of liquid A was contained by the can initially?",25,21,20,10,b.,2
+66,Equal weights of two alloys containing tin; copper and lead in the ratio 3:2:7 and 4:11:3 are melted and mixed together. What is the ratio of tin; copper and lead in the resultant alloy?,42:21:37,34:32:21,17:28:27,52:27:29,c.,2
+67,A person can row 750 metres against the stream in 11 ¼ minutes and returns in 7 ½ minutes. The speed of the person in in still water is :,2 km/hr,3 km/hr,4 km/hr,5 km/hr,5 km/hr,2
+68,If a man rows at the rate of 6 kmph in still water and his rate aginst the current is 4.5 kmph; then the man’s rate along the current is,6 kmph,7.5 kmph,6.5 kmph,8 kmph,7.5 kmph,2
+69,A boat moves upstream at the rate of 1 km in 20 minutes and down stream 1 km in 12 minutes. The speed of the current is :,1 kmph,2 kmph,3 kmph,2.5 kmph,1 kmph,2
+70,A man can row a boat at 10 kmph in still water and the speed of the stream is 8 kmph. What is the time taken to row a distance of 90 km down the stream ?,8 hrs,5 hrs,15 hrs,20 hrs,5 hrs,2
+71,If Athul rows 16 km upstream and 24 km down steam taking 4 hours each; then the speed of the,1 kmph,2 kmph,1.5 kmph,12 kmph,1 kmph,2
+72,A boy runs 200 metres in 24 seconds. What is his speed ?,20 km/hr,24 km/hr,28.5 km/hr,30 km/hr,30 km/hr,2
+73,If the speed of a man is 45 km per hour; then what is the distance traveled by him in 30 seconds ?,275m,360m,375 m,420 m,375 m,2
+74,An escalator moves towards the top level at the rate of 11 ft.sec and its length is 140 feet. If a person walks on the moving escalator at the rate of 3 feet per second towards the top level; how much time does he take to cover the entire length.,14 sec,10 sec,12 sec ,8 sec,10 sec,2
+75,"Two persons; Ram & Lakshman;who are at a distance of 100 km from each other;move towards each other from two places P and Q at speeds of 20 kmph and 25 kmph respectively. Lakshman reaches P;
+returns immediately and meets Ram at R; who started on the return journey to P immediately after reaching Q. What is the distance between Q and R?",33 1/3 km,25 km,30 km,27 1/3  km,33 1/3 km,2
+76,With out any halt a train  travels a certain distance with an average speed of 75 km ph ; and with halts it covers the same distance at an average speed of 60 kmph. When it is traveling with halts; how many minutes/per hour does the train halt on an average ?,48 min,12 min ,15 min,18 min,12 min ,2
+77,In a 1000 m race Usha beats Shiny by 50 m. In the same race; by what time margin Shiny beat Mercy who runs at 4 m/s ?,100 sec,50 sec ,25 sec,Data not sufficient,50 sec ,2
+78, A and B participate in a 5000 m bicycle race which is being  run on a circular track of 500 m. If the speed of A and B are 20 m/s and 10 m/s respectively; what is the distance covered by A when he passes B for the seventh time ?,2500,2800,4000,situation is not possible,situation is not possible,2
+79,Two buses  A and B leave the same bus depot; A towards the North and B towads the East. The bus A travels at a speed of 5 km/hr more than that of the bus B. If after four hours the distance between the two buses is 100 km; find the speed of the bus A.,60 kmph,40 kmph,20 kmph,15 kmph,20 kmph,2
+80,A person traveled from his house to office at 30 kmph; then he was late to his office by 5 minutes. If he increases his speed by 10 kmph he would be early by 15 minutes to his office. What should be his speed so that he reaches his office on time ?,36 kmph,32 kmph,34 kmph,35 kmph,32 kmph,2
+81,A train 575 m long crosses a tunnel of length 325 in 90 sec. What is the speed of the train in kmph.,28,32,36,24,36,2
+82, A train which has 390 m long; is running 45 kmph. In what time will it cross a person moving at 9 kmph in same direction ?,26 sec,39 sec,36 sec,29 sec,39 sec,2
+83,Two persons start running simultaneously around a circular track of length 400 m from the same point at speeds of 15 kmph and 25 kmph. When will they meet for the first time any where on the track if they are moving in the opposite direction ?,144,36,124,32,36,2
+84,Two  persons C & D started traveling from A and B which are 300 km apart; towards B and  A respectively at 1.00 p.m. C travels at a constant speed of 30 kmph whereas D doubles his speed every hour. If D reaches A in 4 5/8 hours; at what time did C and D meet each other ?,4:30,4:40,5:00,5:10,5:00,2
+85,Two trains T1 and T2 start simultaneously from two stations X and Y respectively towards each other. If they are 70 km apart both 3  and 6 hours after start; then find the distance between the two stations.,210 km,240 km,220 km,180 km,210 km,2
+86,Ajith and Rana walk around a circular course 115 km in circumference; starting together from the same point. If they walk at speed of 4 and 5 kmph respectively; in the same direction; when will they meet ?,after 20 hours,after 115 hours,after 115 minutes,after 20 mins,after 115 hours,2
+87,There are 4 people who has to cross a stretch of 300 km. They normally run at a speed of 10 kmph. One of them has a bike that travels at 50 kmph. The bike first takes one person alone and crosses the stretch while the other two keep running. Then he comes back without wasting time and picks up another person from the way; drives him across the stretch; and does the same for the last person. How long does this whole process take?,24 hrs,16 hrs,56/3 hrs  ,58/3 hrs,58/3 hrs,2
+88,Ragav took a bus from home to market; that travels at 40 kmph. While walking back at 4 kmph; halfway through; he suddenly realized he was getting late and he cycled back the remaining distance in 30 kmph. Find the average speed.,6.5 kmph,12.0 kmph,28.5 kmph,none of these,12.0 kmph,2
+89,Two trains of equal length 120 metres move in the same direction. The faster train completely overtakes the slower one in 15 seconds. If the slower train were to move at half its speed; the over taking would take in 10 seconds. At what speeds are the 2 trains moving (faster and slower respectively in m/s),"24, 22","32, 16","30, 18","28, 14","32, 16",2
+90,A can do a work in 14 days and working together A and B can do the same work in 10 days. In what time can B alone do the work?,25 days,30 days,23 days,35 days,35 days,2
+91,Manu; Manju and Maya can do a work in 90; 30 and 45 days respectively. If they work together; in how many days will they complete work?,15,10,20,25,15,2
+92,40 men can catch 200 sharks in 20 days working 6 hours a day. In how many days 25 men can catch 300 sharks working 4 hours a day?,30,34,24,20,24,2
+93,Amit and Ananthu can do a work in 15 days and 25 days respectively. Amit started the work and left after 3 days. Ananthu took over and completed the work. In how many days was the total work completed?   ,28 days,20 days,23 days,25 days,28 days,2
+94, If A is thrice as fast as B and together can do a work in 21 days. In how many days A alone can do the work?,36,42,28,54,28,2
+95,9 men can do a work in 12 days working 4 hours a day. In how many days can 6 men do the same work; working 8 hours a day?,18,9,10,8,9,2
+96,Rohit and Rohan can complete a work in 12 days and 6 days respectively. How much time will they take when working together?,4,3,5,2,4,2
+97,Sita and Sinu together can do a work in 50 days. With the help of Smitha; they completed the work in 6 days and earn Rs.250. What is the share of Sinu if Sita alone can do the work in 100 days?,Rs 15,Rs 18,Rs 20,Rs 25,Rs 15,2
+98,A and B can do a work in 60 days; B and C can do it in 120 days; A and C can do it in 80 days. In what time A alone can do the work?,100,90,80,70,90,2
+99, Renu can do a piece of work in 6 days; but with the help of her friend Suma ; she can do it in 4 days. In what time Suma can do it alone?,10,12,14,15,12,2
+100,A can finish a work in 20 days; B in 15 days and C in 12 days. B and C start the work but are forced to leave after 2 days. The remaining work was done by A in :,10,11,13,14,14,2
+101,Anu can do a work in 6 days and Binu alone in 9 days. Anu and Binu undertook to do it for Rs.4500. With help of Minu; they completed the work in 3 days. How much is to be paid to Minu and Anu?,"Rs.750, Rs.2250","Rs.2000, Rs.750","Rs.750, Rs.2000","Rs.800, Rs.1250","Rs.750, Rs.2250",2
+102,Ram; Krish and Bhim can complete a work in 30 days. If Ram and Krish together can complete the same work in 40 days; then how long will Bhim take to complete it?,60,80,100,120,120,2
+103,3 workers transfer a tool weighing 120kg in 12 seconds. How many men are required to transfer it in 9 seconds?,4,5,6,8,4,2
+104,There is enough provisions for 600 men in an army camp for 25 days. If there were 300 men less; how long will the provision last?,35 days,40 days,45 days,50 days,50 days,2
+105,2 men and 4 boys can complete a work in 4 days. 5 men and 6 boys can complete the same work in 3 days. The work done by 2 boys is equal to the work of how many men?,4,5,6,7,5,2
+106,A is twice as good a workman as B and together they complete a work in 12 days. In how many days A alone can do the work?,32,34,35,36,36,2
+107,Two pipes can fill a tank in 12 minutes and 20 minutes respectively. Both pipes are opened together and after some time the first pipe is closed and the tank is full in totally 10 minutes. For how many minutes was first pipe open?,8 mins,6 mins,7mins,10 mins,6 mins,2
+108,Two pipes can fill a tank in 15 minutes and 12 minutes. The outlet pipe can empty the tank in 20 minutes. If all the pipes are opened when; the tank is empty; then in how many minutes will it take to fill the tank?,12,13,11,10,10,2
+109,Pipe A can fill a tank in 12 hours. Due to a leak at the bottom it takes 20 hours to fill the tank. In what time the leak alone can empty the full tank?,18 hours,23 hours,28 hours,30 hours,30 hours,2
+110,"In a race of 200 m, A can beat B by 31 m and C by 18 m. In a race of 350 m, C will beat B by:",22.5,25,15,30,25,2
+111,A can run 22.5 m while B runs 25 m. In a kilometre race B beats A by:,100m,300m,225m,120m,100m,2
+112,In a 300 m race A beats B by 22.5 m or 6 seconds. B's time over the course is:,80sec,70sec,60sec,50sec,80 sec,2
+113,"In a 100 m race, A can beat B by 25 m and B can beat C by 4 m. In the same race, A can beat C by:",28m,30m,32m,26m,28m,2
+114,An accurate clock shows 8 o'clock in the morning. Through how may degrees will the hour hand rotate when the clock shows 2 o'clock in the afternoon?,100 degree,120 degree,150 degree,180 degree,180 degree,2
+115,"A clock is started at noon. By 10 minutes past 5, the hour hand has turned through:",100 degree,155 degree,200 degree,300 degree,155 degree,2
+116,"The angle between the minute hand and the hour hand of a clock when the time is 4.20, is:",10 degree,5 degree,30 degree,20 degree,10 degree,2
+117,"At 3:40, the hour hand and the minute hand of a clock form an angle of:",130 degree,120 degree,40 degree,50 drgree,130 drgree,2
+118,How many times are the hands of a clock at right angle in a day?,20,44,55,69,44,2
+119,"The angle between the minute hand and the hour hand of a clock when the time is 8.30, is:",75 degree,80 degree,90 degree,55 degree,75 degree,2
+120,"How many times in a day, are the hands of a clock in straight line but opposite in direction?",22,44,55,66,22,2
+121,How many times do the hands of a clock coincide in a day?,22,88,66,55,22,2
+122,"It was Sunday on Jan 1, 2006. What was the day of the week Jan 1, 2010?",Sunday,Saturday,Friday,Wednesday,Friday,2
+123,"What was the day of the week on 28th May, 2006?",Tuesday,Monday,Sunday,Saturday,Sunday,2
+124,"What was the day of the week on 17th June, 1998?",Wednesday,Friday,Tuesday,Monday,Wednesday,2
+125,"What will be the day of the week 15th August, 2010?",Sunday,Tuesday,Wednesday,Monday,Sunday,2
+126,"Today is Monday. After 61 days, it will be:",Saturday,Sunday,Wednesday,Tuesday,Saturday,2
+127,"If 6th March, 2005 is Monday, what was the day of the week on 6th March, 2004?",Sunday,Wednesday,Tuesday,Monday,Sunday,2
+128,The last day of a century cannot be,Wednesday,Tuesday,Sunday,Monday,Tuesday,2
+129,Which of the following is not a leap year?,700,800,1200,2000,700,2
+130,The calendar for the year 2007 will be the same for the year:,2018,2016,2014,2000,2018,2
+131,The sum of ages of 5 children born at the intervals of 3 years each is 50 years. What is the age of the youngest child?,4 years,5 years,6 years,None of these,4 years,2
+132,"A father said to his son, ""I was as old as you are at the present at the time of your birth"". If the father's age is 38 years now, the son's age five years back was:",14 years,5 years,10 years,None of these,14 years,2
+133,"A is two years older than B who is twice as old as C. If the total of the ages of A, B and C be 27, the how old is B?",10,9,8,7,10,2
+134,"Present ages of Sameer and Anand are in the ratio of 5 : 4 respectively. Three years hence, the ratio of their ages will become 11 : 9 respectively. What is Anand's present age in years?",55,Cannot be determined,None of these,24,24,2
+135,"A man is 24 years older than his son. In two years, his age will be twice the age of his son. The present age of his son is:",22,69,44,55,22,2
+136,"Six years ago, the ratio of the ages of Kunal and Sagar was 6 : 5. Four years hence, the ratio of their ages will be 11 : 10. What is Sagar's age at present?",16 years,15 years,19 years,25 years,16 years,2
+137,"The sum of the present ages of a father and his son is 60 years. Six years ago, father's age was five times the age of the son. After 6 years, son's age will be:",20 years,15 years,19 years,25 years,20 years,2
+138,"At present, the ratio between the ages of Arun and Deepak is 4 : 3. After 6 years, Arun's age will be 26 years. What is the age of Deepak at present ?",15 years,20 years,19 years,25 years,15 years,2
+139,"Find the greatest number that will divide 43, 91 and 183 so as to leave the same remainder in each case.",4,6,7,8,4,2
+140,The H.C.F. of two numbers is 23 and the other two factors of their L.C.M. are 13 and 14. The larger of the two numbers is:,322,876,678,555,322,2
+141,"Six bells commence tolling together and toll at intervals of 2, 4, 6, 8 10 and 12 seconds respectively. In 30 minutes, how many times do they toll together ?",4,16,69,65,16,2
+142,"Let N be the greatest number that will divide 1305, 4665 and 6905, leaving the same remainder in each case. Then sum of the digits in N is:",4,5,6,8,4,2
+143,"The greatest number of four digits which is divisible by 15, 25, 40 and 75 is:",9600,8905,777,4677,9600,2
+144,"The product of two numbers is 4107. If the H.C.F. of these numbers is 37, then the greater number is:",87,111,67,456,111,2
+145,Three number are in the ratio of 3 : 4 : 5 and their L.C.M. is 2400. Their H.C.F. is:,30,40,89,76,40,2
+146,"The G.C.D. of 1.08, 0.36 and 0.9 is:",0.18,1.2,0.1,9.89,0.18,2
+147,The product of two numbers is 2028 and their H.C.F. is 13. The number of such pairs is:,8,6,2,5,2,2
+148,"The least multiple of 7, which leaves a remainder of 4, when divided by 6, 9, 15 and 18 is:",23,789,364,67,364,2
+149,"Find the lowest common multiple of 24, 36 and 40.",457,360,879,690,360,2
+150,"The least number which should be added to 2497 so that the sum is exactly divisible by 5, 6, 4 and 3 is:",2,67,55,23,23,2
+151,"The least number which when divided by 5, 6 , 7 and 8 leaves a remainder 3, but when divided by 9 leaves no remainder, is:",2341,5680,1683,3457,1683,2
+152,"	
+The H.C.F. of two numbers is 11 and their L.C.M. is 7700. If one of the numbers is 275, then the other is:",308,111,453,678,308,2
+153,"What will be the least number which when doubled will be exactly divisible by 12, 18, 21 and 30 ?",789,456,230,630,630,2
+154,The ratio of two numbers is 3 : 4 and their H.C.F. is 4. Their L.C.M. is:,48,23,76,55,48,2
+155,"The smallest number which when diminished by 7, is divisible 12, 16, 18, 21 and 28 is:",1067,1015,3450,2398,1015,2
+156,"The greatest possible length which can be used to measure exactly the lengths 7 m, 3 m 85 cm, 12 m 95 cm is:",32cm,46cm,55cm,35cm,35cm,2
+157,Three numbers which are co-prime to each other are such that the product of the first two is 551 and that of the last two is 1073. The sum of the three numbers is:,85,75,45,23,85,2
+158,Find the highest common factor of 36 and 84.,12,78,56,34,12,2
+159,"The least number, which when divided by 12, 15, 20 and 54 leaves in each case a remainder of 8 is:",548,67,89,678,548,2
+160,"The greatest number which on dividing 1657 and 2037 leaves remainders 6 and 5 respectively, is:",34,78,127,54,127,2
+161,Which of the following has the most number of divisors?,176,45,67,789,176,2
+162,The L.C.M. of two numbers is 48. The numbers are in the ratio 2 : 3. Then sum of the number is:,89,67,40,54,40,2
+163,"A boat can travel with a speed of 13 km/hr in still water. If the speed of the stream is 4 km/hr, find the time taken by the boat to go 68 km downstream.",4 hours,5 hours,8 hours,7 houes,4 hours,2
+164,"A motorboat, whose speed in 15 km/hr in still water goes 30 km downstream and comes back in a total of 4 hours 30 minutes. The speed of the stream (in km/hr) is:",5,8,9,4,5,2
+168,What percent is 2 minutes 24 seconds of an hour?,6%,2%,4%,8%,4%,2
+169,Adding 20% of x to x is equivalent to multiplying x by which of the following?,12.5,1.05,1.15,1.2,1.2,2
+170,The salary of all officers is increased twice successively by 20%. What is the net percentage increase in their salaries?,20%,40%,21%,44%,44%,2
+171,In an examination it is necessary for a candidate to get 45 % of the maximum marks to pass. A candidate who gets 180 marks; fails by 45 marks. Find the maximum marks.,450,600,500,550,500,2
+172,The population of a town increase annually by 20% . If the present population is 2;00;000; then what is the difference in population after two years and three years,"63,250","48,800","60,800","57,600","57,600",2
+173,Population of a city decreases by 10% at the end of first year and increases by 10% at the end of second year and again decreases by 10% at the end of third year. If the population of the city at the end of third year is 4455; then what was the population of the city at the beginning of the first year?,5000,4500,4950,1000,5000,2
+174,In an exam 80% of the boys and 40% of the girls passed. The number of girls who passed is 120; which is 2/3rd of the number of boys who failed. What is the total number of students who appeared for the exam?,1200,380,3800,2180,1200,2
+175,The population of cities A and B is equal. The population of city A increases in two successive years by 20% and 15% respectively and that of city B increases successively by 20% and 10% respectively. If the difference in the population of two cities after 2 years is 768; then what was the total population of the two cities initially?,"12,800","26,500","24,600","25,600","25,600",2
+176,What quantity of water should be added to reduce 5 litres of 45% acidic liquid to 25% acidic liquid?,3 liters,2 liters,4 liters,4.5 liters,4 liters,2
+177,A; B; and C contest an election from a particular constituency. A and B together got 50% more votes than C. The vote share of A and C together is 30 percentage points more than the vote share of B. Who won the election?,A,B,C,Cannot be determined,C,2
+178,In an examination amar got 8% less than the pass mark and mohan got 20% more than the pass mark. If the difference between the percentage of their mark is 14; then what is the pass percentage,40%,50%,60%,Cannot be determined,50%,2
+179,The salaries of A and B together is Rs. 14;000. A spend 80% of his salary and B spends 85% of his salary. What is the salary of B if their savings are equal?,Rs 6000,RS 8000,Rs 7500,Rs 6500,RS 8000,2
+180,A sum of Rs. 395 was divided among A; B; and C in such a way that B gets 25% more than A and 20% more than C. What is the share of A?,Rs 185,RS 190,Rs 98,Rs 120,Rs 120,2
+181,Three times a number is 20% more than twice another number when increased by 105. If twice the first number increased by 36 is 20% less than three times of the second number; then what is the first number?,150,162,180,None of these,162,2
+182,If 5 women or 8 girls can do a work in 84 days. In how many days can 10 women and 5 girls can do the same work?,32 days,48 days,52 days,38 days,32 days,2
+183,If 34 men completed 2/5th of a work in 8 days working 9 hours a day. How many more man should be engaged to finish the rest of the work in 6 days working 9 hours a day?,89,98,102,142,102,2
+184,If 9 men working 6 hours a day can do a work in 88 days. Then 6 men working 8 hours a day can do it in how many days?,89 days,90 days,85 days,99 days,99 days,2
+185,A is twice as good a workman as B and together they finish a piece of work in 18 days. In how many days will A alone finish the work?,31 days,25 days,27 days,29 days,27 days,2
+186,"Worker A takes 8 hours to do a job. Worker B takes 10 hours to do the same job. How long it take both A & B, working together but independently, to do the same job?",40/9 days,40/7 days,7.5 days,8.5 days,40/9 days,2
+187,A can do a piece of work n 7 days of 9 hours each and B alone can do it in 6 days of 7 hours each. How long will they take to do it working together 8 2/5 hours a day?,3,4,5,6,3,2
+189,A can do a piece of work in 80 days. He works at it for 10 days & then B alone finishes the remaining work in 42 days. In how much time will A and B; working together; finish the work?,23 days,25 days,30 days,33 days,30 days,2
+190,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces.2; 7; 14; 23; ?; 47,31,28,34,38,34,2
+191,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces. 4; 6; 12; 14; 28; 30; ? ,32,64,62,60,60,2
+192,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces,57,70,63,75,57,2
+193,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces 11; 13; 17; 19; 23; 29; 31; 37; 41; ? ,43,47,51,53,43,2
+194,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces 15; 31; 63; 127; 255; ? ,513,511,523,517,511,2
+195,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces 5; 11; 17; 25; 33; 43; ? ,49,51,52,53,53,2
+196,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces 9; 12; 11; 14; 13; ?;15 ,12,16,10,17,16,2
+197,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces 0.5; 0.55; 0.65; 0.8; ? ,0.7,0.9,0.95,1,1,2
+198,In each of the following questions a number series is given with one term missing. Choose the correct alternative that will continue the same pattern and fill in the blank spaces1; 4; 9; 16; 25; ?,35,36,48,49,36,2
