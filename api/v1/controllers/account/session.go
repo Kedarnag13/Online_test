@@ -1,15 +1,21 @@
 package account
 
 import (
-	"database/sql"
-	"encoding/json"
-	"github.com/Kedarnag13/Online_test/api/v1/controllers"
-	"github.com/Kedarnag13/Online_test/api/v1/models"
-	"github.com/gorilla/mux"
-	_ "github.com/lib/pq"
-	"io/ioutil"
-	"log"
-	"net/http"
+"database/sql"
+"encoding/json"
+"github.com/Kedarnag13/Online_test/api/v1/controllers"
+"github.com/Kedarnag13/Online_test/api/v1/models"
+"github.com/asaskevich/govalidator"
+_ "github.com/lib/pq"
+"io/ioutil"
+"io"
+"log"
+"strconv"
+"time"
+"crypto/md5"
+"net/http"
+"encoding/hex"  
+"fmt"
 )
 
 type sessionController struct{}
@@ -18,15 +24,158 @@ var Session sessionController
 
 func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 
-	body, err := ioutil.ReadAll(req.Body)
-	var u models.User
+  body, err := ioutil.ReadAll(req.Body)
+  var l models.LogIn
 
-	if err != nil {
-		panic(err)
-	}
-	err = json.Unmarshal(body, &u)
-	if err != nil {
-		panic(err)
-	}
-	
+  if err != nil {
+    panic(err)
+  }
+
+  flag := 0
+
+  err = json.Unmarshal(body, &l)
+
+  if l.Phone_number == "" || l.Password == ""  {
+
+    _, err := govalidator.ValidateStruct(l)
+    if err != nil {
+      println("error: " + err.Error())
+    }
+
+    b, err := json.Marshal(models.ErrorMessage{
+      Success: "false",
+      Error:   err.Error(),
+      })
+
+    if err != nil {
+      log.Fatal(err)
+    }
+    rw.Header().Set("Content-Type", "application/json")
+    rw.Write(b)
+
+    goto user_login_end
+  }else {
+    db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+    if err != nil {
+      log.Fatal(err)
+    }
+    get_user_id, err := db.Query("SELECT id, first_name, last_name, email, phone_number, password FROM users WHERE phone_number=$1", l.Phone_number)
+    if err != nil {
+      log.Fatal(err)
+    }
+
+
+    for get_user_id.Next() {
+
+      flag = 1
+      var id int
+      var first_name string
+      var last_name string
+      var email string
+      var db_password string
+      var phone_number string
+
+      err := get_user_id.Scan(&id, &first_name, &last_name, &email, &phone_number, &db_password)
+      if err != nil {
+        log.Fatal(err)
+      }
+
+      check_session, err := db.Query("SELECT user_id from sessions where user_id = $1", id)
+      if err !=nil {
+        log.Fatal(err)
+      }
+
+      for check_session.Next(){
+        flag = 0
+        var session_id int
+        err := check_session.Scan(&session_id)
+        if err !=nil {
+          log.Fatal(err)
+        }
+
+        b, err := json.Marshal(models.ErrorMessage{
+          Success: "false",
+          Error:   "Session already exist",
+          })
+
+        if err != nil {
+          log.Fatal(err)
+        }
+        rw.Header().Set("Content-Type", "application/json")
+        rw.Write(b)
+
+        goto user_login_end
+      }
+
+
+      key := []byte("traveling is fun")
+
+      decrypt_password := controllers.Decrypt(key, db_password)
+
+      if decrypt_password == l.Password {
+
+        auth_string := strconv.FormatInt(time.Now().Unix(), 10)
+        h := md5.New()
+        io.WriteString(h, auth_string)
+        auth_token := hex.EncodeToString(h.Sum(nil))
+        var session string = "insert into sessions (start_time, user_id, auth_token) values ($1,$2,$3)"
+        ses, err := db.Prepare(session)
+        if err != nil {
+          log.Fatal(err)
+        }
+        start_time := time.Now()
+        session_res, err := ses.Exec(start_time, id, string(auth_token))
+        if err != nil || session_res == nil {
+          log.Fatal(err)
+        }
+
+        fmt.Printf("StartTime: %v\n", time.Now())
+        fmt.Println("User Logged in Successfully!")
+
+        b, err := json.Marshal(models.SuccessfulLogIn{
+          Success: "true",
+          Message: "User created Successfully!",
+          User_id: id,
+          Session: models.Session{id, start_time, string(auth_token)},
+          })
+
+        if err != nil {
+          log.Fatal(err)
+        }
+        rw.Header().Set("Content-Type", "application/json")
+        rw.Write(b)
+
+      }else {
+        b, err := json.Marshal(models.ErrorMessage{
+          Success: "false",
+          Error:   "Password does not match",
+          })
+
+        if err != nil {
+          log.Fatal(err)
+        }
+        rw.Header().Set("Content-Type", "application/json")
+        rw.Write(b)
+      }
+
+      goto user_login_end
+    }
+    
+    if flag == 0 {
+      b, err := json.Marshal(models.ErrorMessage{
+        Success: "false",
+        Error:   "Mobile number does not exist",
+        })
+
+      if err != nil {
+        log.Fatal(err)
+      }
+      rw.Header().Set("Content-Type", "application/json")
+      rw.Write(b)
+    }
+  }
+
+  user_login_end: 
 }
+
+

@@ -24,7 +24,7 @@ type ErrorMessage struct {
 	Error   string
 }
 
-type SignIn struct {
+type SignUp struct {
 	Success string
 	Message string
 	User    Register
@@ -40,9 +40,6 @@ type Session struct {
 }
 
 // Sign_up struct end
-
-
-
 
 type UserDetails struct {
 	Id                 int
@@ -63,6 +60,19 @@ type InviteEmail struct {
 	RecieverEmail string `valid:"email,required"`
 }
 
+// Log_in struct
+
+type LogIn struct {
+	Phone_number string `valid:"required"`
+	Password string `valid:"alphanum,required"`
+}
+
+type SuccessfulLogIn struct {
+	Success string
+	Message string
+	User_id int 
+	Session Session
+}
 
 
 // Message struct [controllers/account]
