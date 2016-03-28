@@ -41,7 +41,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 		log.Fatal(err)
 	}
 
-	res, err := db.Query("SELECT email FROM users ")
+	res, err := db.Query("SELECT email, phone_number FROM users ")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -96,7 +96,8 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 	if flag == 1 {
 		for res.Next() { // email already exist condition
 			var email string
-			err = res.Scan(&email)
+			var phone_number string
+			err = res.Scan(&email, &phone_number)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -112,6 +113,21 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 				rw.Header().Set("Content-Type", "application/json")
 				rw.Write(b)
 				fmt.Println("Email id already exist")
+				flag = 0
+				goto create_user_end
+			}
+
+			if phone_number == u.Phone_number {
+				b, err := json.Marshal(models.ErrorMessage{
+					Success: "false",
+					Error:   "Phone number already exist",
+					})
+				if err != nil {
+					log.Fatal(err)
+				}
+				rw.Header().Set("Content-Type", "application/json")
+				rw.Write(b)
+				fmt.Println("Phone number already exist")
 				flag = 0
 				goto create_user_end
 			}
