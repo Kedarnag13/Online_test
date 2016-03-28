@@ -63,6 +63,7 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
     if err != nil {
       log.Fatal(err)
     }
+    defer get_user_id.Close()
 
 
     for get_user_id.Next() {
@@ -84,6 +85,7 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
       if err !=nil {
         log.Fatal(err)
       }
+      defer check_session.Close()
 
       for check_session.Next(){
         flag = 0
@@ -123,6 +125,8 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
         if err != nil {
           log.Fatal(err)
         }
+        defer ses.Close()
+
         start_time := time.Now()
         session_res, err := ses.Exec(start_time, id, string(auth_token))
         if err != nil || session_res == nil {
@@ -173,6 +177,7 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
       rw.Header().Set("Content-Type", "application/json")
       rw.Write(b)
     }
+  db.Close()
   }
 
   user_login_end: 

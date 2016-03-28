@@ -189,7 +189,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 
 			user := models.Register{id, u.First_name, u.Last_name, u.Email, u.Password, u.Password_confirmation, u.College, u.Branch, u.Year_of_passing, u.Phone_number}
 
-			b, err := json.Marshal(models.SignIn{
+			b, err := json.Marshal(models.SignUp{
 				Success: "true",
 				Message: "User created Successfully!",
 				User:    user,
