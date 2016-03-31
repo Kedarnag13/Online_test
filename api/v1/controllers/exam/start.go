@@ -66,6 +66,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 	b, err := json.Marshal(models.QuestionResponseMessage{
 			Success:     "true",
 			Message:     "Questions per section",
+			SectionId: 	section_id,
 			QuestionList:	questions_section,
 			})
 		if err != nil {
