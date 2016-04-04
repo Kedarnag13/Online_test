@@ -9,6 +9,7 @@ type Question struct {
 type QuestionResponseMessage struct {
 	Success string
 	Message string
+	SectionId int	
 	QuestionList []Question
 }
 type QuestionResponse struct {
