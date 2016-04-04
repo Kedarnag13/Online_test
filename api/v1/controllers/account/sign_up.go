@@ -54,12 +54,11 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 	defer fetch_id.Close()
 
 	if flag == 1 {
-		email := `^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`
+		email := `^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,4}$`
 		exp, err := regexp.Compile(email)
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println("phone_number:",u.Phone_number)
 		if u.First_name == "" || u.Last_name == "" || u.Email == "" || !exp.MatchString(u.Email) || u.Password == "" || u.Password_confirmation == "" || u.College == "" || u.Year_of_passing == "" {
 
 			_, err := govalidator.ValidateStruct(u)
