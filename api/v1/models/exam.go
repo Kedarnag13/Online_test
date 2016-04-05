@@ -2,7 +2,7 @@ package models
 
 type Question struct {
 	Id int
-	Title []rune
+	Title [1000]string
 	Options []string
 }
 
