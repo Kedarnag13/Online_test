@@ -42,7 +42,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 
 	for get_questions.Next() {
 	var id int
-	var title [1000]string
+	var title []string
 	var option_1 string
 	var option_2 string
 	var option_3 string
