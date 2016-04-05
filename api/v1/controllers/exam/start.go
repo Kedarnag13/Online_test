@@ -42,7 +42,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 
 	for get_questions.Next() {
 	var id int
-	var title []string
+	var title []byte
 	var option_1 string
 	var option_2 string
 	var option_3 string
@@ -60,6 +60,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 		options = append(options, option_3)
 		options = append(options, option_4)
 
+		title = []byte(string(title))
 		question_details = models.Question{id, title, options}
 		questions_section = append(questions_section, question_details)
 	}
