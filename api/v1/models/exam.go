@@ -2,14 +2,14 @@ package models
 
 type Question struct {
 	Id int
-	Title string
+	Title []byte
 	Options []string
 }
 
 type QuestionResponseMessage struct {
 	Success string
 	Message string
-	SectionId int	
+	SectionId int
 	QuestionList []Question
 }
 type QuestionResponse struct {
