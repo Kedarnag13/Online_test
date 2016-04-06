@@ -49,8 +49,24 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 			}
 		}
 	}
+
+	user_details, err := db.Query("SELECT first_name, last_name, email from users where id = $1",u.UserId)
+	if err != nil {
+		panic(err)
+	}
+	defer user_details.Close()
+	var first_name string
+	var last_name string
+	var email string
+
+	for user_details.Next(){
+		err := user_details.Scan(&first_name, &last_name, &email)
+		if err != nil {
+			panic(err)
+		}
+	}
 	if u.SectionId == 1 {
-		var insert_result string = "insert into results (user_id, section_1) values ($1,$2)"
+		var insert_result string = "insert into results (user_id, section_1, first_name, last_name, email) values ($1,$2,$3,$4,$5)"
 
 		prepare_insert_result, err := db.Prepare(insert_result)
 		if err != nil {
@@ -59,7 +75,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 
 		defer prepare_insert_result.Close()
 
-		insert_result_exec, err := prepare_insert_result.Exec(u.UserId,score)
+		insert_result_exec, err := prepare_insert_result.Exec(u.UserId,score, first_name, last_name, email)
 		if err != nil || insert_result_exec == nil {
 			panic(err)
 		}
