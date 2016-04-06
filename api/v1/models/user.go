@@ -24,6 +24,11 @@ type ErrorMessage struct {
 	Error   string
 }
 
+type FieldErrorMessage struct {
+	Success string
+	Error   []string
+}
+
 type SignUp struct {
 	Success string
 	Message string
@@ -70,7 +75,7 @@ type LogIn struct {
 type SuccessfulLogIn struct {
 	Success string
 	Message string
-	User_id int 
+	User_id int
 	Session Session
 }
 
