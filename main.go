@@ -13,6 +13,7 @@ import (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/sign_up", account.Registration.Create).Methods("POST")
+	r.HandleFunc("/create_admin", account.Registration.CreateAdmin).Methods("POST")
 	r.HandleFunc("/log_in", account.Session.Create).Methods("POST")
 	r.HandleFunc("/section/evaluate", exam.Result.Create).Methods("POST")
 	r.HandleFunc("/questions/{id:[0-9]+}", exam.Exam.Questions).Methods("GET")
