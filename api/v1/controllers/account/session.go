@@ -7,6 +7,7 @@ import (
 	"github.com/Kedarnag13/Online_test/api/v1/models"
 	"github.com/asaskevich/govalidator"
 	_ "github.com/lib/pq"
+  "github.com/gorilla/mux"
 	"io/ioutil"
 	"io"
 	"strconv"
@@ -29,7 +30,6 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-
 	flag := 0
 
 	err = json.Unmarshal(body, &l)
@@ -191,3 +191,29 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 			}
 			user_login_end:
 		}
+
+
+func (s sessionController) Destroy(rw http.ResponseWriter, req *http.Request) {
+
+  vars := mux.Vars(req)
+  auth_token := vars["auth_token"]
+
+  db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+  if err != nil {
+    panic(err)
+  }
+  delete_session, err := db.Query("DELETE FROM SESSIONS WHERE auth_token=$1", auth_token)
+  if err != nil || delete_session == nil {
+    panic(err)
+  }
+  b, err := json.Marshal(models.ErrorMessage{
+    Success: "true",
+    Error:   "Session destroyed successfully.",
+  })
+
+  if err != nil {
+    panic(err)
+  }
+  rw.Header().Set("Content-Type", "application/json")
+  rw.Write(b)
+}
