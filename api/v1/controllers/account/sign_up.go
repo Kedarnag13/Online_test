@@ -179,7 +179,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 						}
 						id = id + 1
 
-						var sStmt string = "insert into users (id, first_name, last_name, email, college, branch, phone_number, year_of_passing, password, password_confirmation) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)"
+						var sStmt string = "insert into users (id, first_name, last_name, email, college, branch, phone_number, year_of_passing, password, password_confirmation, role) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,'user')"
 						db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
 						if err != nil {
 							panic(err)
@@ -240,4 +240,50 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 				}
 				create_user_end:
 				db.Close()
+			}
+
+			func (r registrationController) CreateAdmin(rw http.ResponseWriter, req *http.Request) {
+
+				db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+				if err != nil {
+					panic(err)
+				}
+				flag := 1
+				CheckAdmin, err := db.Query("SELECT phone_number from USERS where phone_number = $1 AND role = $2","1111111111","admin")
+				if err != nil {
+					panic(err)
+				}
+				for CheckAdmin.Next(){
+					flag = 0
+					b, err := json.Marshal(models.ErrorMessage{
+						Success: "false",
+						Error:   "Admin already exist",
+					})
+					if err != nil {
+						panic(err)
+					}
+					rw.Header().Set("Content-Type", "application/json")
+					rw.Write(b)
+
+					goto AdminEnd
+				}
+				if flag == 1{
+					key := []byte("traveling is fun")
+					password := []byte("Qwinix123")
+					encrypt_password := controllers.Encrypt(key, password)
+				_, err = db.Query("INSERT into USERS(first_name, last_name, email, password, phone_number, role) VALUES('praveen', 'menon', $1, 'pmenon@yopmail.com', '1111111111', 'admin')",encrypt_password)
+				if err != nil {
+					panic(err)
+				}
+				b, err := json.Marshal(models.AdminSuccessMessage{
+					Success: "True",
+					Message:   "Admin Created Successfully",
+				})
+				if err != nil {
+					panic(err)
+				}
+				rw.Header().Set("Content-Type", "application/json")
+				rw.Write(b)
+				}
+				AdminEnd:
 			}

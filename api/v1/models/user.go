@@ -70,6 +70,7 @@ type InviteEmail struct {
 type LogIn struct {
 	Phone_number string `valid:"required"`
 	Password string `valid:"alphanum,required"`
+	Role string `valid:"alphanum,required"`
 }
 
 type LogOut struct {
@@ -140,4 +141,9 @@ type UserList struct {
 	Success      string
 	No_Of_Users  int
 	User_Details []UserDetails
+}
+
+type AdminSuccessMessage struct {
+	Success string
+	Message string
 }
