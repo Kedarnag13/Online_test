@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"io/ioutil"
 	"fmt"
+	"log"
 )
 
 type resultController struct{}
@@ -125,3 +126,16 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 
 			db.Close()
 		}
+
+func (e examController) Export(rw http.ResponseWriter, req *http.Request) {
+	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+	if err != nil {
+		panic(err)
+	}
+	export_csv, err := db.Query("COPY results TO '/Users/kedarnag/results.csv' DELIMITER ',' CSV HEADER;")
+	if err != nil {
+		panic(err)
+	}
+	log.Println(export_csv)
+	db.Close()
+}
