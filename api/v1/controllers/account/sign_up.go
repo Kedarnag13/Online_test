@@ -130,9 +130,10 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 				}
 
 				if email == u.Email && phone_number == u.Phone_number {
-					b, err := json.Marshal(models.ErrorMessage{
+					b, err := json.Marshal(models.EmailPasswordErrorMessage{
 						Success: "false",
-						Error:   "Email Id and Phone Number already exist",
+						Email_error: "Email already exist",
+						Phone_number_error: "Phone number already exist",
 					})
 					if err != nil {
 						panic(err)
