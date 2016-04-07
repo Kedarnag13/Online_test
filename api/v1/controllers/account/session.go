@@ -206,6 +206,7 @@ func (s sessionController) Destroy(rw http.ResponseWriter, req *http.Request) {
   if err != nil || delete_session == nil {
     panic(err)
   }
+  defer delete_session.Close()
   b, err := json.Marshal(models.ErrorMessage{
     Success: "true",
     Error:   "Session destroyed successfully.",
@@ -216,4 +217,5 @@ func (s sessionController) Destroy(rw http.ResponseWriter, req *http.Request) {
   }
   rw.Header().Set("Content-Type", "application/json")
   rw.Write(b)
+  db.Close()
 }

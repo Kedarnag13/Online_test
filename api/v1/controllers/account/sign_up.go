@@ -254,6 +254,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 				if err != nil {
 					panic(err)
 				}
+				defer CheckAdmin.Close()
 				for CheckAdmin.Next(){
 					flag = 0
 					b, err := json.Marshal(models.ErrorMessage{
@@ -287,4 +288,5 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 				rw.Write(b)
 				}
 				AdminEnd:
+				db.Close()
 			}

@@ -136,6 +136,6 @@ func (e examController) Export(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	log.Println(export_csv)
+	defer export_csv.Close()
 	db.Close()
 }
