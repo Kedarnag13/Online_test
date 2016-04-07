@@ -24,6 +24,12 @@ type ErrorMessage struct {
 	Error   string
 }
 
+type EmailPasswordErrorMessage struct {
+	Success string
+	Email_error string
+	Phone_number_error string
+}
+
 type FieldErrorMessage struct {
 	Success string
 	Error   []string
