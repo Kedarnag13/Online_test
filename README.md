@@ -12,14 +12,16 @@ Test - online_test_test
 ### Create users table
 ```
 CREATE TABLE USERS (
-id int,
+id SERIAL,
 first_name varchar(100),
 last_name varchar(100),
 email varchar(100),
+college varchar(200),
 branch varchar(100),
 password varchar(100),
 password_confirmation varchar(100),
 phone_number varchar(100),
+role varchar(50),
 year_of_passing varchar(4),
 PRIMARY KEY(id));
 ```
