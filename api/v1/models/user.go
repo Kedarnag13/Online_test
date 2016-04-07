@@ -72,6 +72,11 @@ type LogIn struct {
 	Password string `valid:"alphanum,required"`
 }
 
+type LogOut struct {
+	Success string
+	Message string
+}
+
 type SuccessfulLogIn struct {
 	Success string
 	Message string
