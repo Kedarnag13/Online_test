@@ -107,9 +107,19 @@ type EmailMessage struct {
 	User    InviteEmail
 }
 
+type PasswordErrorMessage struct {
+	Success string
+	Password_error  string
+}
+
 type EmailErrorMessage struct {
 	Success string
-	Error   string
+	Email_error   string
+}
+
+type PhoneNumberErrorMessage struct {
+	Success string
+	Phone_number_error   string
 }
 
 // User profile Struct

@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"io/ioutil"
 	"fmt"
-	"log"
 )
 
 type resultController struct{}
