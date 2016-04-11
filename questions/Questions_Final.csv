@@ -18,7 +18,7 @@ id,title,option_1,option_2,option_3,option_4,answer,section_id
 19,Which of the following is rightly spelt.,Contiguous,Contigous,Contaguous,Contegeous,Contiguous,1
 20,"I did not like what I wore but I did not much care, for I was always of the opinion that ________",shabby clothes is beautiful,real beauty was what lay on the inside,I will buy new clothes tomorrow,I was too happy to notice,real beauty was what lay on the inside,1
 21,"Contrary to what many devotees would like to believe, researchers have found the water of the holy river_____ harmful micro-organisms.",helped by,teeming with,completely free from,defended against,teeming with,1
-22,"Following is a set of four sentences. Choose the sentence which is most appropriate – grammatically, semantically and logically.",The word 'discipline' means a training that produces obedience or self-controlled behaviour to the orders of a proper authority.,The word 'discipline' means a training that produces obedience or self-controlled behaviour at the orders for a proper authority.,Discipline’ is a word that produces obedience or self-controlled behavior to the orders of a proper authority.,Discipline is nothing but training that produces obedience and self-control to orders of authority.,The word 'discipline' means a training that produces obedience or self-controlled behaviour to the orders of a proper authority.,1
+22,“Choose the word which best expresses the meaning of - CORPULENT.”,Lean,Gaunt,Emaciated,Obese,Obese,1
 23,"A situation is provided below, followed by a idiom or proverb. Choose the one which fits the situation best:If you repay injustice with injustice, it will only make matters worse",People who live in glass houses should not throw stones,Handsome is as handsome does.,Two wrongs don’t make a right,Let not injustice beget injustice,Two wrongs don’t make a right,1
 24,"In the question below choose the alternative that best substitutes the underlined expression .If you look, you will find a hole in the side of every ship that allows water to drain from the deck.",Sink,Drain,Scabbard,Scupper,Scupper,1
 25,Choose the word most nearly opposite in meaning to the given word:Daunt,Frighten,Challenge,Intimidate,Hearten,Hearten,1
@@ -305,7 +305,7 @@ id,title,option_1,option_2,option_3,option_4,answer,section_id
 299,Choose the word which best expresses the meaning of the given word.CANDID,Apparent,Explicit,Frank,Bright,Frank,1
 300,Choose the word which best expresses the meaning of the given word.MELD,To soothe,Merge,Purchase,Glisten,Merge,1
 301,"If FRIEND is coded as HUMJTK, how can CANDLE be written in that code? ",DEQJQM,DCQHQK,EDRIRL,ESJFME,EDRIRL,2
-302,"Based on the following statements, which is the correct conclusion drawn. 
+302,"Based on the following statements, which is the correct conclusion drawn.
 
 Only gentlemen can become members of the club. Many of the members of the club are officers. Some of the officers have been invited for dinner. ","All the members of the club have been invited for dinner
 ",   All gentlemen are members of the club,"Some of the officers are not gentlemen
@@ -349,7 +349,7 @@ Only gentlemen can become members of the club. Many of the members of the club a
 334,"Three ladies X, Y and Z marry three men A, B and C. X is married to A, Y is not married to an engineer, Z is not married to a doctor, C is not a doctor and A is a lawyer. Then which of the following statements is correct ?",Y is married to C who is an engineer,Z is married to C who is a doctor,X is married to a doctor,None of the above,None of the above,2
 335,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants: The number indicating the uneducated urban males is",4,5,7,11,5,2
 336,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants: The number indicating the educated civil servants who are males but not urbans is",7,8,9,10,10,2
-337,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants:The number indicating the educated urban males who are not civil servants is 
+337,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants:The number indicating the educated urban males who are not civil servants is
 
 ",7,8,9,10,9,2
 338,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants: The number indicating the educated urban males who are not civil servants is: The number indicating the educated males who are urban civil servants is",4,7,8,9,8,2
@@ -370,7 +370,7 @@ If the first two statements are true, the third statement is",TRUE,FALSE,Uncerta
 Some of the trees in the park are dogwoods.
 All dogwoods in the park are flowering trees.
 If the first two statements are true, the third statement is",TRUE,FALSE,Uncertain,None of the above,TRUE,2
-347,"	
+347,"
 Mara runs faster than Gail.
 Lily runs faster than Mara.
 Gail runs faster than Lily.
@@ -410,7 +410,7 @@ The secretary drives a yellow car.
 Alice's car is parked next to David's.
 Enid drives a green car.
 Bert's car is parked between Cheryl's and Enid's.
-David's car is parked in the last space.         
+David's car is parked in the last space.
 Who is the secretary?",David,Alice,Cheryl,Bert,Alice,2
 355,"Read the below passage carefully and answer the questions:
 
@@ -434,7 +434,7 @@ The car in the last space is purple.
 The secretary drives a yellow car.
 Alice's car is parked next to David's.
 Enid drives a green car.
-Bert's car is parked between Cheryl's and Enid's.         
+Bert's car is parked between Cheryl's and Enid's.
 David's car is parked in the last space.What color is the vice president's car?",Green,Yellow,Red,Purple,Green,2
 357,"Here are some words translated from an artificial language.
 gorblflur means fan belt
@@ -446,7 +446,7 @@ hapllesh means cloudburst
 srenchoch means pinball
 resbosrench means ninepin
 Which word could mean ""cloud nine""?",leshsrench,ochhapl,haplresbo,haploch,haplresbo,2
-359,"	
+359,"
 Here are some words translated from an artificial language.
 agnoscrenia means poisonous spider
 delanocrenia means poisonous snake
@@ -574,7 +574,7 @@ BRUNT (dull, edifice, impact, tawny, nonsense)",Dull,Edifice,Impact,Tawny,Impact
 
 Between your house and her house, you have to cross 7 bridges, and as it goes in the land of make believe, there is a troll under every bridge! Each troll, quite rightly, insists that you pay a troll toll. Before you can cross their bridge, you have to give them half of the cakes you are carrying, but as they are kind trolls, they each give you back a single cake.
 
-How many cakes do you have to leave home with to make sure that you arrive at Grandma's with exactly 2 cakes? 
+How many cakes do you have to leave home with to make sure that you arrive at Grandma's with exactly 2 cakes?
 ",1,2,3,4,2,2
 442,"I have 100 coins in my wallet.
 
@@ -598,7 +598,7 @@ Bridge: I had locked myself in my room as my wife left me.
 Cole: I dropped my wife to her office.
 
 Who is the killer?",Wayne,Terry,Bridge,Cole,Terry,2
-447,"While trying to pull out a robbery, a criminal came across a password lock. He has the following information with him that can assist him in cracking the password. 
+447,"While trying to pull out a robbery, a criminal came across a password lock. He has the following information with him that can assist him in cracking the password.
 
 Can you help him out?
 
@@ -607,7 +607,7 @@ The 4th digit is 4 more than the 2nd one.
 The 3rd digit is 3 less than the 2nd one.
 The 1st digit is three times the 5th digit.
 Three pairs of digits sum up to 11.",65292,64282,63171,62050,65292,2
-448,"Pointing towards Vaman, Madhav said “I am the only son of his father’s one of the sons.” 
+448,"Pointing towards Vaman, Madhav said “I am the only son of his father’s one of the sons.”
 
 How Vaman is related to Madhav?",Nephew,Uncle,Either father or uncle,Father,Either father or uncle,2
 449,"Pointing to a photograph, Vipul said, ""She is the daughter of my grandfather's only son.""
@@ -646,43 +646,43 @@ Conclusion: 1. Some jungles are tables 2. Some trees are jungles 3. Some flowers
 Conclusions: 1.some cots are candles 2. Some candles are cots",If only conclusion 1 follows,If only conclusion 2 follows,If either conclusion 1 or 2 follows,If neither conclusion 1 nor 2 follows,If neither conclusion 1 nor 2 follows,2
 466,"Statements: (i) Some pigs are dogs (ii) No cow is goat (iii) Some goats are nets
 Conclusion: 1. some pigs are cows 2. Some nets are cows 3. Some nets are pigs 4. Some dogs are either pigs of nets",Only 1 follow,Only 2 follow,Only 1 and 2 follow,Only 2 and 4 follow,Only 2 follow,2
-467,"( I ) 'A * B' means 'A is brother of B' 
+467,"( I ) 'A * B' means 'A is brother of B'
 
-( II ) 'A / B' means 'B is mother of A' 
+( II ) 'A / B' means 'B is mother of A'
 
-( III ) 'A – B' means 'A is father of B' 
+( III ) 'A – B' means 'A is father of B'
 
-( IV ) 'A + B' means 'B is sister of A' 
+( IV ) 'A + B' means 'B is sister of A'
 
 
 
 Which of the following means L is daughter of H?",L + K / J – H,H – J * R + L,L – J * H / K,L + W * R / H,H – J * R + L,2
-468,"( I ) 'A * B' means 'A is brother of B' 
+468,"( I ) 'A * B' means 'A is brother of B'
 
-( II ) 'A / B' means 'B is mother of A' 
+( II ) 'A / B' means 'B is mother of A'
 
-( III ) 'A – B' means 'A is father of B' 
+( III ) 'A – B' means 'A is father of B'
 
-( IV ) 'A + B' means 'B is sister of A' 
+( IV ) 'A + B' means 'B is sister of A'
 
 
 
 How is S related to T in the Expression: T / P + S ?",Daughter,Sister,Niece,Aunt,Aunt,2
-469,"( I ) 'A * B' means 'A is father of B' 
+469,"( I ) 'A * B' means 'A is father of B'
 
-( II ) 'A – B' means 'A is sister of B' 
+( II ) 'A – B' means 'A is sister of B'
 
-( III ) 'A + B' means 'A is mother of B' 
+( III ) 'A + B' means 'A is mother of B'
 
 ( IV ) 'A/B' means 'A is sister of B'
 
 
 In the expression D + F * O / P, how is O related to D?",Grand daughter,Son,Grand son,Daughter,Grand son,2
-470,"( I ) 'A * B' means 'A is father of B' 
+470,"( I ) 'A * B' means 'A is father of B'
 
-( II ) 'A – B' means 'A is sister of B' 
+( II ) 'A – B' means 'A is sister of B'
 
-( III ) 'A + B' means 'A is mother of B' 
+( III ) 'A + B' means 'A is mother of B'
 
 ( IV ) 'A/B' means 'A is sister of B'
 
@@ -714,7 +714,7 @@ IWhich of the following represents ‘ J is son of F ‘’ ?",J / R – T * F,J
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following is correct?",B is between A and D,D is between F and G,E is to the immediate right of G,F is to the immediate left of G,B is between A and D,2
 492,"(i) A, B, C, D, E, F and G are playing cards sitting around a circular table
@@ -723,7 +723,7 @@ Which of the following is correct?",B is between A and D,D is between F and G,E 
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following will be D's position after E and D interchange their places?",BD,EC,AE,GF,GF,2
 493,"(i) A, B, C, D, E, F and G are playing cards sitting around a circular table
@@ -732,7 +732,7 @@ Which of the following will be D's position after E and D interchange their plac
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following will be D's position after E and D interchange their places?",Neighbour to G and C,To the immediate right of F,Neighbour of C and A,To the immediate left of C,Neighbour to G and C,2
 494,"(i) A, B, C, D, E, F and G are playing cards sitting around a circular table
@@ -741,7 +741,7 @@ Which of the following will be D's position after E and D interchange their plac
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following has the second person sitting between the first and third person?",DAB,BCA,GFD,GCE,GFD,2
 495,"(i) A, B, C, D, E, F and G are playing cards sitting around a circular table
@@ -750,22 +750,22 @@ Which of the following has the second person sitting between the first and third
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following is wrong?",A is to the immediate right of B,B is to the immediate left of D,F is between G and D,E is between G and C,F is between G and D,2
-496,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+496,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 Who is the only person sitting between Rajesh and Mahesh ?",Prasad,Abhi,Ganesh,Kiran,Ganesh,2
-497,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+497,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 Ganesh is not sitting at equal distance from?",Mahesh and Prasad,Abhi and Kiran,Rajesh and Prasad,All of the Above,All of the Above,2
-498,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+498,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 Ganesh is sitting ________ of Parveen.",to the left,two places right,to the right,three places left,three places left,2
-499,"""Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+499,"""Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 The angle between Ganesh and Mahesh in the clockwise direction is ?",30 degree,210 degree,180 degree,90 degree,30 degree,2
-500,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+500,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 Which of the following statements is not correct ?",Prasad is between Mahesh and Kiran,Mahesh is two places away from Parveen,Ganesh is sitting opposite Prasad,All of Above,All of Above,2
 501,What number replaces the question mark?,10,9,11,13,13,2
@@ -1056,7 +1056,7 @@ Rock'. Which code represents 'Then' in the given code language?",Ya,Me,Sh,Cannot
 599,"In a row of boys, if A who is tenth from the left and B who is ninth from the right interchange their positions. A becomes fifteenth from the left. How many boys are there in the row?",21,23,27,28,23,2
 600,"If Ajay finds that he is twelth from the right in a line of boys and fourth from the left, how many boys should be added to the line such that there are 28 boys in the line?",13,14,16,20,13,2
 601,"If FRIEND is coded as HUMJTK, how can CANDLE be written in that code? ",DEQJQM,DCQHQK,EDRIRL,ESJFME,EDRIRL,3
-602,"Based on the following statements, which is the correct conclusion drawn. 
+602,"Based on the following statements, which is the correct conclusion drawn.
 
 Only gentlemen can become members of the club. Many of the members of the club are officers. Some of the officers have been invited for dinner. ","All the members of the club have been invited for dinner
 ",   All gentlemen are members of the club,"Some of the officers are not gentlemen
@@ -1099,10 +1099,10 @@ Only gentlemen can become members of the club. Many of the members of the club a
 633,"There are five books A, B, C, D and E placed on a table. If A is placed below E, C is placed above D, B is placed below A and D is placed above E, then which of the following books touches the surface of the table ?",C,B,A,E,B,3
 634,"Three ladies X, Y and Z marry three men A, B and C. X is married to A, Y is not married to an engineer, Z is not married to a doctor, C is not a doctor and A is a lawyer. Then which of the following statements is correct ?",Y is married to C who is an engineer,Z is married to C who is a doctor,X is married to a doctor,None of the above,None of the above,3
 635,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants: The number indicating the uneducated urban males is",4,5,7,11,5,3
-636,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants: The number indicating the educated civil servants who are males but not urbans is 
+636,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants: The number indicating the educated civil servants who are males but not urbans is
 
 ",7,8,9,10,10,3
-637,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants:The number indicating the educated urban males who are not civil servants is 
+637,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants:The number indicating the educated urban males who are not civil servants is
 
 ",7,8,9,10,9,3
 638,"These questions are based on the figure given above in which (1) Rectangle represents Males, (2) Circle represents the urbans (3) Square represents the educated and (4) Triangle represents the civil servants: The number indicating the educated urban males who are not civil servants is: The number indicating the educated males who are urban civil servants is",4,7,8,9,8,3
@@ -1123,7 +1123,7 @@ If the first two statements are true, the third statement is",TRUE,FALSE,Uncerta
 Some of the trees in the park are dogwoods.
 All dogwoods in the park are flowering trees.
 If the first two statements are true, the third statement is",TRUE,FALSE,Uncertain,None of the above,TRUE,3
-647,"	
+647,"
 Mara runs faster than Gail.
 Lily runs faster than Mara.
 Gail runs faster than Lily.
@@ -1163,7 +1163,7 @@ The secretary drives a yellow car.
 Alice's car is parked next to David's.
 Enid drives a green car.
 Bert's car is parked between Cheryl's and Enid's.
-David's car is parked in the last space.         
+David's car is parked in the last space.
 Who is the secretary?",David,Alice,Cheryl,Bert,Alice,3
 655,"Read the below passage carefully and answer the questions:
 
@@ -1188,7 +1188,7 @@ The secretary drives a yellow car.
 Alice's car is parked next to David's.
 Enid drives a green car.
 Bert's car is parked between Cheryl's and Enid's.
-David's car is parked in the last space.         
+David's car is parked in the last space.
 What color is the vice president's car?",Green,Yellow,Red,Purple,Green,3
 657,"Here are some words translated from an artificial language.
 gorblflur means fan belt
@@ -1200,7 +1200,7 @@ hapllesh means cloudburst
 srenchoch means pinball
 resbosrench means ninepin
 Which word could mean ""cloud nine""?",leshsrench,ochhapl,haplresbo,haploch,haplresbo,3
-659,"	
+659,"
 Here are some words translated from an artificial language.
 agnoscrenia means poisonous spider
 delanocrenia means poisonous snake
@@ -1328,7 +1328,7 @@ BRUNT (dull, edifice, impact, tawny, nonsense)",Dull,Edifice,Impact,Tawny,Impact
 
 Between your house and her house, you have to cross 7 bridges, and as it goes in the land of make believe, there is a troll under every bridge! Each troll, quite rightly, insists that you pay a troll toll. Before you can cross their bridge, you have to give them half of the cakes you are carrying, but as they are kind trolls, they each give you back a single cake.
 
-How many cakes do you have to leave home with to make sure that you arrive at Grandma's with exactly 2 cakes? 
+How many cakes do you have to leave home with to make sure that you arrive at Grandma's with exactly 2 cakes?
 ",1,2,3,4,2,3
 742,"I have 100 coins in my wallet.
 
@@ -1352,7 +1352,7 @@ Bridge: I had locked myself in my room as my wife left me.
 Cole: I dropped my wife to her office.
 
 Who is the killer?",Wayne,Terry,Bridge,Cole,Terry,3
-747,"While trying to pull out a robbery, a criminal came across a password lock. He has the following information with him that can assist him in cracking the password. 
+747,"While trying to pull out a robbery, a criminal came across a password lock. He has the following information with him that can assist him in cracking the password.
 
 Can you help him out?
 
@@ -1361,7 +1361,7 @@ The 4th digit is 4 more than the 2nd one.
 The 3rd digit is 3 less than the 2nd one.
 The 1st digit is three times the 5th digit.
 Three pairs of digits sum up to 11.",65292,64282,63171,62050,65292,3
-748,"Pointing towards Vaman, Madhav said “I am the only son of his father’s one of the sons.” 
+748,"Pointing towards Vaman, Madhav said “I am the only son of his father’s one of the sons.”
 
 How Vaman is related to Madhav?",Nephew,Uncle,Either father or uncle,Father,Either father or uncle,3
 749,"Pointing to a photograph, Vipul said, ""She is the daughter of my grandfather's only son.""
@@ -1400,43 +1400,43 @@ Conclusion: 1. Some jungles are tables 2. Some trees are jungles 3. Some flowers
 Conclusions: 1.some cots are candles 2. Some candles are cots",If only conclusion 1 follows,If only conclusion 2 follows,If either conclusion 1 or 2 follows,If neither conclusion 1 nor 2 follows,If neither conclusion 1 nor 2 follows,3
 766,"Statements: (i) Some pigs are dogs (ii) No cow is goat (iii) Some goats are nets
 Conclusion: 1. some pigs are cows 2. Some nets are cows 3. Some nets are pigs 4. Some dogs are either pigs of nets",Only 1 follow,Only 2 follow,Only 1 and 2 follow,Only 2 and 4 follow,Only 2 follow,3
-767,"( I ) 'A * B' means 'A is brother of B' 
+767,"( I ) 'A * B' means 'A is brother of B'
 
-( II ) 'A / B' means 'B is mother of A' 
+( II ) 'A / B' means 'B is mother of A'
 
-( III ) 'A – B' means 'A is father of B' 
+( III ) 'A – B' means 'A is father of B'
 
-( IV ) 'A + B' means 'B is sister of A' 
+( IV ) 'A + B' means 'B is sister of A'
 
 
 
 Which of the following means L is daughter of H?",L + K / J – H,H – J * R + L,L – J * H / K,L + W * R / H,H – J * R + L,3
-768,"( I ) 'A * B' means 'A is brother of B' 
+768,"( I ) 'A * B' means 'A is brother of B'
 
-( II ) 'A / B' means 'B is mother of A' 
+( II ) 'A / B' means 'B is mother of A'
 
-( III ) 'A – B' means 'A is father of B' 
+( III ) 'A – B' means 'A is father of B'
 
-( IV ) 'A + B' means 'B is sister of A' 
+( IV ) 'A + B' means 'B is sister of A'
 
 
 
 How is S related to T in the Expression: T / P + S ?",Daughter,Sister,Niece,Aunt,Aunt,3
-769,"( I ) 'A * B' means 'A is father of B' 
+769,"( I ) 'A * B' means 'A is father of B'
 
-( II ) 'A – B' means 'A is sister of B' 
+( II ) 'A – B' means 'A is sister of B'
 
-( III ) 'A + B' means 'A is mother of B' 
+( III ) 'A + B' means 'A is mother of B'
 
 ( IV ) 'A/B' means 'A is sister of B'
 
 
 In the expression D + F * O / P, how is O related to D?",Grand daughter,Son,Grand son,Daughter,Grand son,3
-770,"( I ) 'A * B' means 'A is father of B' 
+770,"( I ) 'A * B' means 'A is father of B'
 
-( II ) 'A – B' means 'A is sister of B' 
+( II ) 'A – B' means 'A is sister of B'
 
-( III ) 'A + B' means 'A is mother of B' 
+( III ) 'A + B' means 'A is mother of B'
 
 ( IV ) 'A/B' means 'A is sister of B'
 
@@ -1468,7 +1468,7 @@ IWhich of the following represents ‘ J is son of F ‘’ ?",J / R – T * F,J
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following is correct?",B is between A and D,D is between F and G,E is to the immediate right of G,F is to the immediate left of G,B is between A and D,3
 792,"(i) A, B, C, D, E, F and G are playing cards sitting around a circular table
@@ -1477,7 +1477,7 @@ Which of the following is correct?",B is between A and D,D is between F and G,E 
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following will be D's position after E and D interchange their places?",BD,EC,AE,GF,GF,3
 793,"(i) A, B, C, D, E, F and G are playing cards sitting around a circular table
@@ -1486,7 +1486,7 @@ Which of the following will be D's position after E and D interchange their plac
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following will be D's position after E and D interchange their places?",Neighbour to G and C,To the immediate right of F,Neighbour of C and A,To the immediate left of C,Neighbour to G and C,3
 794,"(i) A, B, C, D, E, F and G are playing cards sitting around a circular table
@@ -1495,7 +1495,7 @@ Which of the following will be D's position after E and D interchange their plac
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following has the second person sitting between the first and third person?",DAB,BCA,GFD,GCE,GFD,3
 795,"(i) A, B, C, D, E, F and G are playing cards sitting around a circular table
@@ -1504,22 +1504,22 @@ Which of the following has the second person sitting between the first and third
 
 (iii)A is neighbour of B and C.
 
-(iv) G, who is second to the left of D, is the neighbour of E and F. 
+(iv) G, who is second to the left of D, is the neighbour of E and F.
 
 Which of the following is wrong?",A is to the immediate right of B,B is to the immediate left of D,F is between G and D,E is between G and C,F is between G and D,3
-796,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+796,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 Who is the only person sitting between Rajesh and Mahesh ?",Prasad,Abhi,Ganesh,Kiran,Ganesh,3
-797,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+797,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 Ganesh is not sitting at equal distance from?",Mahesh and Prasad,Abhi and Kiran,Rajesh and Prasad,All of the Above,All of the Above,3
-798,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+798,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 Ganesh is sitting ________ of Parveen.",to the left,two places right,to the right,three places left,three places left,3
-799,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+799,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 The angle between Ganesh and Mahesh in the clockwise direction is ?",30 degree,210 degree,180 degree,90 degree,30 degree,3
-800,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh. 
+800,"Seven friends Kiran, Mahesh, Rajesh, Abhi, Ganesh, Prasad and Parveen are sitting in a circle. Kiran, Mahesh, Rajesh, Abhi, Prasad and Parveen are sitting at equal distances from each other. Rajesh is sitting after two places right of Prasad, who is sitting one place right of Abhi. Kiran forms an angle of 90 degrees from Ganesh and an angle of 120 degrees from Mahesh. Mahesh is just opposite Parveen and is sitting on the left of Ganesh.
 
 Which of the following statements is not correct ?",Prasad is between Mahesh and Kiran,Mahesh is two places away from Parveen,Ganesh is sitting opposite Prasad,All of Above,All of Above,3
 801,What number replaces the question mark?,10,9,11,13,13,3
