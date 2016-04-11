@@ -125,6 +125,7 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 						panic(err)
 					}
 
+					db.Close()
 					fmt.Printf("StartTime: %v\n", time.Now())
 					fmt.Println("User Logged in Successfully!")
 
