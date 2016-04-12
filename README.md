@@ -74,10 +74,10 @@ REFERENCES users(id),
 first_name varchar(100),
 last_name varchar(100),
 email varchar(100),
-section_1 int,
-section_2 int,
-section_3 int,
-total_score int
+section_1 int DEFAULT 0,
+section_2 int DEFAULT 0,
+section_3 int DEFAULT 0,
+total_score int DEFAULT 0
 );
 ```
 
@@ -120,4 +120,25 @@ The user registers for online exam . A session is created as soon as he signs up
 	}
 }
 ```
+
+### Evaluate answers
+
+URL - http://localhost:3010/section/evaluate
+
+Method POST
+
+Data has to be sent in raw format
+```
+{"SectionId":1, "UserId":12, "Questions":[{"QuestionId":1,"Answer":"a"},{"QuestionId":2,"Answer":"a"},{"QuestionId":3,"Answer":"a"},{"QuestionId":4,"Answer":"a"},{"QuestionId":5,"Answer":"a"},{"QuestionId":6,"Answer":"a"},{"QuestionId":7,"Answer":"a"},{"QuestionId":8,"Answer":"a"},{"QuestionId":9,"Answer":"a"},{"QuestionId":10,"Answer":"a"},{"QuestionId":11,"Answer":"a"},{"QuestionId":12,"Answer":"a"}]}
+```
+
+#### JSON Response
+```
+{
+	"Section": 1,
+	"TotalQuestions": 20,
+	"Score": 0
+}
+```
+
 ---

@@ -18,6 +18,8 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
 	var u models.QuestionResponse
 
+	flag := 0
+
 	err = json.Unmarshal(body, &u)
 	if err != nil {
 		panic(err)
@@ -63,125 +65,158 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-	}
-	if u.SectionId == 1 {
-		var insert_result string = "insert into results (user_id, section_1, first_name, last_name, email) values ($1,$2,$3,$4,$5)"
-
-		prepare_insert_result, err := db.Prepare(insert_result)
-		if err != nil {
-			panic(err)
-		}
-
-		defer prepare_insert_result.Close()
-
-		insert_result_exec, err := prepare_insert_result.Exec(u.UserId,score, first_name, last_name, email)
-		if err != nil || insert_result_exec == nil {
-			panic(err)
-		}
-
-		} else if u.SectionId == 2 {
-			update_result, err := db.Query("UPDATE results SET section_2=$1 where user_id=$2", score, u.UserId)
-			if err != nil || update_result == nil {
+		if u.SectionId == 1 {
+			check_result_exist, err := db.Query("SELECT user_id from results where user_id = $1", u.UserId)
+			if err != nil {
 				panic(err)
 			}
-			defer update_result.Close()
-			} else {
-				fetch_score, err := db.Query("SELECT section_1, section_2 from results where user_id = $1", u.UserId)
-				if err != nil || fetch_score == nil {
+			defer check_result_exist.Close()
+
+			for check_result_exist.Next(){
+				fmt.Println("Updating Section 1 results")
+				update_section1_results, err := db.Query("UPDATE results SET section_1= $1 where user_id = $2", score, u.UserId)
+				if err != nil || update_section1_results == nil {
 					panic(err)
 				}
-				defer fetch_score.Close()
-
-				var section_1_score int
-				var section_2_score int
-
-				for fetch_score.Next() {
-					err := fetch_score.Scan(&section_1_score, &section_2_score)
-					if err != nil {
-						panic(err)
-					}
+				defer update_section1_results.Close()
+				b, err := json.Marshal(models.Result{
+					Section:     u.SectionId,
+					TotalQuestions: 20,
+					Score:	score,
+				})
+				if err != nil {
+					panic(err)
 				}
+				rw.Header().Set("Content-Type", "application/json")
+				rw.Write(b)
+				goto update_results_end
+			}
+			fmt.Println("Creating and inserting Section 1 results")
+			var insert_result string = "insert into results (user_id, section_1, first_name, last_name, email) values ($1,$2,$3,$4,$5)"
+			prepare_insert_result, err := db.Prepare(insert_result)
+			if err != nil {
+				panic(err)
+			}
 
-				total_score := section_1_score + section_2_score + score
+			defer prepare_insert_result.Close()
 
-				update_result, err := db.Query("UPDATE results SET section_3=$1, total_score = $2 where user_id=$3", score, total_score, u.UserId)
+			insert_result_exec, err := prepare_insert_result.Exec(u.UserId,score, first_name, last_name, email)
+			if err != nil || insert_result_exec == nil {
+				panic(err)
+			}
+
+			} else if u.SectionId == 2 {
+				fmt.Println("Updating Section 2 results")
+				update_result, err := db.Query("UPDATE results SET section_2=$1 where user_id=$2", score, u.UserId)
 				if err != nil || update_result == nil {
 					panic(err)
 				}
 				defer update_result.Close()
+				} else {
+					fmt.Println("Updating Section 3 results")
+					fetch_score, err := db.Query("SELECT section_1, section_2 from results where user_id = $1", u.UserId)
+					if err != nil || fetch_score == nil {
+						panic(err)
+					}
+					defer fetch_score.Close()
 
+					var section_1_score int
+					var section_2_score int
+
+					for fetch_score.Next() {
+						err := fetch_score.Scan(&section_1_score, &section_2_score)
+						if err != nil {
+							panic(err)
+						}
+					}
+
+					total_score := section_1_score + section_2_score + score
+
+					update_result, err := db.Query("UPDATE results SET section_3=$1, total_score = $2 where user_id=$3", score, total_score, u.UserId)
+					if err != nil || update_result == nil {
+						panic(err)
+					}
+					defer update_result.Close()
+				}
+					b, err := json.Marshal(models.Result{
+						Section:     u.SectionId,
+						TotalQuestions: 20,
+						Score:	score,
+					})
+					if err != nil {
+						panic(err)
+					}
+					rw.Header().Set("Content-Type", "application/json")
+					rw.Write(b)
+					goto update_results_end
+			}
+			if flag == 0 {
+				b, err := json.Marshal(models.ErrorMessage{
+					Success: "false",
+					Error:   "User does not exist",
+				})
+
+				if err != nil {
+					panic(err)
+				}
+				rw.Header().Set("Content-Type", "application/json")
+				rw.Write(b)
 			}
 
-			b, err := json.Marshal(models.Result{
-				Section:     u.SectionId,
-				TotalQuestions: 20,
-				Score:	score,
+			update_results_end:
+			db.Close()
+		}
+
+		func (e examController) Export(rw http.ResponseWriter, req *http.Request) {
+			db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+			if err != nil {
+				panic(err)
+			}
+			export_csv, err := db.Query("COPY results TO '/tmp/results.csv' DELIMITER ',' CSV HEADER;")
+			if err != nil {
+				panic(err)
+			}
+			defer export_csv.Close()
+			db.Close()
+		}
+
+		func (e examController) ResultList(rw http.ResponseWriter, req *http.Request){
+			db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+			if err != nil {
+				panic(err)
+			}
+			pass_list, err := db.Query("Select first_name, last_name, email, section_1, section_2, section_3, total_score from results", )
+			defer pass_list.Close()
+			if err != nil {
+				panic(err)
+			}
+			var all_user_results []models.UserResult
+			var total_users int
+			for pass_list.Next(){
+				var first_name string
+				var last_name string
+				var email string
+				var section_1_score int
+				var section_2_score int
+				var section_3_score	int
+				var total_score int
+				var result models.UserResult
+				err := pass_list.Scan(&first_name, &last_name, &email, &section_1_score, &section_2_score, &section_3_score, &total_score)
+				if err != nil {
+					panic(err)
+				}
+				result = models.UserResult{first_name, last_name, email, section_1_score, section_2_score, section_3_score, total_score}
+				all_user_results = append(all_user_results, result)
+				total_users = total_users + 1
+			}
+			b, err := json.Marshal(models.Report{
+				Total_users: total_users,
+				Report_list:	all_user_results,
 			})
 			if err != nil {
 				panic(err)
 			}
 			rw.Header().Set("Content-Type", "application/json")
 			rw.Write(b)
-
 			db.Close()
 		}
-
-func (e examController) Export(rw http.ResponseWriter, req *http.Request) {
-	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
-	if err != nil {
-		panic(err)
-	}
-	export_csv, err := db.Query("COPY results TO '/tmp/results.csv' DELIMITER ',' CSV HEADER;")
-	if err != nil {
-		panic(err)
-	}
-	defer export_csv.Close()
-	db.Close()
-}
-
-func (e examController) ResultList(rw http.ResponseWriter, req *http.Request){
-	// vars := mux.Vars(req)
-	// id := vars["id"]
-	// section_id, err := strconv.Atoi(id)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
-	if err != nil {
-		panic(err)
-	}
-	pass_list, err := db.Query("Select first_name, last_name, email, section_1, section_2, section_3, total_score from results", )
-	defer pass_list.Close()
-	if err != nil {
-		panic(err)
-	}
-	var all_user_results []models.UserResult
-	var total_users int
-	for pass_list.Next(){
-		var first_name string
-		var last_name string
-		var email string
-		var section_1_score int
-		var section_2_score int
-		var section_3_score	int
-		var total_score int
-		var result models.UserResult
-		err := pass_list.Scan(&first_name, &last_name, &email, &section_1_score, &section_2_score, &section_3_score, &total_score)
-		if err != nil {
-			panic(err)
-		}
-		result = models.UserResult{first_name, last_name, email, section_1_score, section_2_score, section_3_score, total_score}
-		all_user_results = append(all_user_results, result)
-		total_users = total_users + 1
-	}
-	b, err := json.Marshal(models.Report{
-		Total_users: total_users,
-		Report_list:	all_user_results,
-	})
-	if err != nil {
-		panic(err)
-	}
-	rw.Header().Set("Content-Type", "application/json")
-	rw.Write(b)
-	db.Close()
-}
