@@ -138,3 +138,50 @@ func (e examController) Export(rw http.ResponseWriter, req *http.Request) {
 	defer export_csv.Close()
 	db.Close()
 }
+
+func (e examController) ResultList(rw http.ResponseWriter, req *http.Request){
+	// vars := mux.Vars(req)
+	// id := vars["id"]
+	// section_id, err := strconv.Atoi(id)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+	if err != nil {
+		panic(err)
+	}
+	pass_list, err := db.Query("Select first_name, last_name, email, section_1, section_2, section_3, total_score from results", )
+	defer pass_list.Close()
+	if err != nil {
+		panic(err)
+	}
+	var all_user_results []models.UserResult
+	var total_users int
+	for pass_list.Next(){
+		var first_name string
+		var last_name string
+		var email string
+		var section_1_score int
+		var section_2_score int
+		var section_3_score	int
+		var total_score int
+		var result models.UserResult
+		err := pass_list.Scan(&first_name, &last_name, &email, &section_1_score, &section_2_score, &section_3_score, &total_score)
+		if err != nil {
+			panic(err)
+		}
+		result = models.UserResult{first_name, last_name, email, section_1_score, section_2_score, section_3_score, total_score}
+		all_user_results = append(all_user_results, result)
+		total_users = total_users + 1
+	}
+	b, err := json.Marshal(models.Report{
+		Total_users: total_users,
+		Report_list:	all_user_results,
+	})
+	if err != nil {
+		panic(err)
+	}
+	rw.Header().Set("Content-Type", "application/json")
+	rw.Write(b)
+	db.Close()
+}

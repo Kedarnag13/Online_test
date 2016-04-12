@@ -29,3 +29,18 @@ type Result struct {
 	TotalQuestions int
 	Score int
 }
+
+type UserResult struct {
+	First_name string
+	Last_name string
+	Email string
+	Section_1_score int
+	Section_2_score int
+	Section_3_score int
+	Total_score int
+}
+
+type Report struct {
+	Total_users int
+	Report_list []UserResult
+}

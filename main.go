@@ -20,6 +20,7 @@ func main() {
 	r.HandleFunc("/questions/{id:[0-9]+}", exam.Exam.Questions).Methods("GET")
 	r.HandleFunc("/feedback", feedback.Feedback.Create).Methods("POST")
 	r.HandleFunc("/export_csv", exam.Result.Export).Methods("GET")
+	r.HandleFunc("/results", exam.Result.ResultList).Methods("GET")
 
 	// HTTP Listening Port
 
