@@ -18,6 +18,8 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 	body, err := ioutil.ReadAll(req.Body)
 	var u models.QuestionResponse
 
+	flag := 0
+
 	err = json.Unmarshal(body, &u)
 	if err != nil {
 		panic(err)
@@ -104,6 +106,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 				}
 				rw.Header().Set("Content-Type", "application/json")
 				rw.Write(b)
+				flag = 1
 			goto update_results_end
 		}
 		fmt.Println("Creating and inserting Section 1 results")
@@ -154,17 +157,18 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 				defer update_result.Close()
 
 			}
-
-			b, err := json.Marshal(models.Result{
-				Section:     u.SectionId,
-				TotalQuestions: 20,
-				Score:	score,
-			})
-			if err != nil {
-				panic(err)
+			if flag == 1{
+				b, err := json.Marshal(models.Result{
+					Section:     u.SectionId,
+					TotalQuestions: 20,
+					Score:	score,
+				})
+				if err != nil {
+					panic(err)
+				}
+				rw.Header().Set("Content-Type", "application/json")
+				rw.Write(b)
 			}
-			rw.Header().Set("Content-Type", "application/json")
-			rw.Write(b)
 
 			update_results_end:
 			db.Close()
