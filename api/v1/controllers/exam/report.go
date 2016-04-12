@@ -132,7 +132,7 @@ func (e examController) Export(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	export_csv, err := db.Query("COPY results TO '/Users/kedarnag/results.csv' DELIMITER ',' CSV HEADER;")
+	export_csv, err := db.Query("COPY results TO '/home/deploy/.gvm/pkgsets/go1.4.2/global/src/github.com/Kedarnag13/Online_test/results.csv' DELIMITER ',' CSV HEADER;")
 	if err != nil {
 		panic(err)
 	}
