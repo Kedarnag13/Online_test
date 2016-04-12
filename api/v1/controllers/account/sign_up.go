@@ -58,58 +58,29 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 			panic(err)
 		}
 
-		var error_message []string
-
-		if u.First_name == "" {
-			flag = 0
-			error_message = append(error_message,"First Name is empty")
-		}
-		if u.Last_name == "" {
-			flag = 0
-			error_message = append(error_message,"Last Name is empty")
-		}
 		if !exp.MatchString(u.Email){
 			flag = 0
-			error_message = append(error_message,"Give a valid email")
-		}
-		if u.Password == "" {
-			flag = 0
-			error_message = append(error_message,"Password is empty")
-		}
-		if u.Password_confirmation == "" {
-			flag = 0
-			error_message = append(error_message,"Confirm Password is empty")
-		}
-		if u.College == "" {
-			flag = 0
-			error_message = append(error_message,"College is empty")
-		}
-		if u.Year_of_passing == "" {
-			flag = 0
-			error_message = append(error_message,"Year of passing is empty")
-		}
+				_, err := govalidator.ValidateStruct(u)
+				if err != nil {
+					println("error: " + err.Error())
+				}
 
-		if flag == 0{
-			_, err := govalidator.ValidateStruct(u)
-			if err != nil {
-				println("error: " + err.Error())
-			}
-
-			b, err := json.Marshal(models.FieldErrorMessage{
-				Success: "false",
-				Error:   error_message,
-			})
-			if err != nil {
-				panic(err)
-			}
-			rw.Header().Set("Content-Type", "application/json")
-			rw.Write(b)
-			goto create_user_end
-			}else if u.Password != u.Password_confirmation {
-				flag = 0
 				b, err := json.Marshal(models.EmailErrorMessage{
 					Success: "false",
-					Error:   "Password and confirm password do not match!",
+					Email_error: "Give a valid email",
+				})
+				if err != nil {
+					panic(err)
+				}
+				rw.Header().Set("Content-Type", "application/json")
+				rw.Write(b)
+				goto create_user_end
+		}
+		 if u.Password != u.Password_confirmation {
+				flag = 0
+				b, err := json.Marshal(models.PasswordErrorMessage{
+					Success: "false",
+					Password_error:   "Password and confirm password do not match!",
 				})
 				if err != nil {
 					panic(err)
@@ -143,9 +114,9 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 					flag = 0
 					goto create_user_end
 					}else if email == u.Email {
-						b, err := json.Marshal(models.ErrorMessage{
+						b, err := json.Marshal(models.EmailErrorMessage{
 							Success: "false",
-							Error:   "Email id already exist",
+							Email_error:   "Email id already exist",
 						})
 						if err != nil {
 							panic(err)
@@ -155,9 +126,9 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 						flag = 0
 						goto create_user_end
 						}else if phone_number == u.Phone_number {
-							b, err := json.Marshal(models.ErrorMessage{
+							b, err := json.Marshal(models.PhoneNumberErrorMessage{
 								Success: "false",
-								Error:   "Phone number already exist",
+								Phone_number_error: "Phone number already exist",
 							})
 							if err != nil {
 								panic(err)

@@ -7,7 +7,7 @@ import (
 	"github.com/Kedarnag13/Online_test/api/v1/models"
 	"github.com/asaskevich/govalidator"
 	_ "github.com/lib/pq"
-  "github.com/gorilla/mux"
+	"github.com/gorilla/mux"
 	"io/ioutil"
 	"io"
 	"strconv"
@@ -94,18 +94,11 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 						panic(err)
 					}
 
-					b, err := json.Marshal(models.ErrorMessage{
-						Success: "false",
-						Error:   "Session already exist",
-					})
-
-					if err != nil {
+					delete_session, err := db.Query("DELETE from sessions where user_id = $1",id)
+					if err !=nil {
 						panic(err)
 					}
-					rw.Header().Set("Content-Type", "application/json")
-					rw.Write(b)
-
-					goto user_login_end
+					defer delete_session.Close()
 				}
 
 
@@ -132,12 +125,13 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 						panic(err)
 					}
 
+					db.Close()
 					fmt.Printf("StartTime: %v\n", time.Now())
 					fmt.Println("User Logged in Successfully!")
 
 					b, err := json.Marshal(models.SuccessfulLogIn{
 						Success: "true",
-						Message: "User created Successfully!",
+						Message: "User Logged in Successfully!",
 						User_id: id,
 						Session: models.Session{id, start_time, string(auth_token)},
 					})
@@ -195,27 +189,26 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 
 func (s sessionController) Destroy(rw http.ResponseWriter, req *http.Request) {
 
-  vars := mux.Vars(req)
-  auth_token := vars["auth_token"]
+	vars := mux.Vars(req)
+	auth_token := vars["auth_token"]
+	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+	if err != nil {
+		panic(err)
+	}
+	delete_session, err := db.Query("DELETE FROM SESSIONS WHERE auth_token=$1", auth_token)
+	if err != nil || delete_session == nil {
+		panic(err)
+	}
+	defer delete_session.Close()
+	b, err := json.Marshal(models.ErrorMessage{
+		Success: "true",
+		Error:   "Session destroyed successfully.",
+	})
 
-  db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
-  if err != nil {
-    panic(err)
-  }
-  delete_session, err := db.Query("DELETE FROM SESSIONS WHERE auth_token=$1", auth_token)
-  if err != nil || delete_session == nil {
-    panic(err)
-  }
-  defer delete_session.Close()
-  b, err := json.Marshal(models.ErrorMessage{
-    Success: "true",
-    Error:   "Session destroyed successfully.",
-  })
-
-  if err != nil {
-    panic(err)
-  }
-  rw.Header().Set("Content-Type", "application/json")
-  rw.Write(b)
-  db.Close()
+	if err != nil {
+		panic(err)
+	}
+	rw.Header().Set("Content-Type", "application/json")
+	rw.Write(b)
+	db.Close()
 }
