@@ -51,7 +51,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 		}
 	}
 
-	user_details, err := db.Query("SELECT first_name, last_name, email from users where id = $1",u.UserId)
+	user_details, err := db.Query("SELECT first_name, last_name, email, phone_number, city, batch from users where id = $1",u.UserId)
 	if err != nil {
 		panic(err)
 	}
@@ -59,9 +59,12 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 	var first_name string
 	var last_name string
 	var email string
+	var phone_number string
+	var city string
+	var batch int
 
 	for user_details.Next(){
-		err := user_details.Scan(&first_name, &last_name, &email)
+		err := user_details.Scan(&first_name, &last_name, &email, &phone_number, &city, &batch)
 		if err != nil {
 			panic(err)
 		}
@@ -92,7 +95,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 				goto update_results_end
 			}
 			fmt.Println("Creating and inserting Section 1 results")
-			var insert_result string = "insert into results (user_id, section_1, first_name, last_name, email) values ($1,$2,$3,$4,$5)"
+			var insert_result string = "insert into results (user_id, section_1, first_name, last_name, email, phone_number, city, batch) values ($1,$2,$3,$4,$5,$6,$7,$8)"
 			prepare_insert_result, err := db.Prepare(insert_result)
 			if err != nil {
 				panic(err)
@@ -100,7 +103,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 
 			defer prepare_insert_result.Close()
 
-			insert_result_exec, err := prepare_insert_result.Exec(u.UserId,score, first_name, last_name, email)
+			insert_result_exec, err := prepare_insert_result.Exec(u.UserId, score, first_name, last_name, email, phone_number, city, batch)
 			if err != nil || insert_result_exec == nil {
 				panic(err)
 			}
@@ -132,7 +135,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 
 					total_score := section_1_score + section_2_score + score
 
-					update_result, err := db.Query("UPDATE results SET section_3=$1, total_score = $2 where user_id=$3", score, total_score, u.UserId)
+					update_result, err := db.Query("UPDATE results SET section_3=$1, total_score = $2, test_finished = $3 where user_id = $4", score, total_score, true, u.UserId)
 					if err != nil || update_result == nil {
 						panic(err)
 					}
@@ -185,7 +188,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 			if err != nil {
 				panic(err)
 			}
-			pass_list, err := db.Query("Select first_name, last_name, email, section_1, section_2, section_3, total_score from results", )
+			pass_list, err := db.Query("Select first_name, last_name, email, phone_number, city, batch, section_1, section_2, section_3, total_score from results where test_finished = true", )
 			defer pass_list.Close()
 			if err != nil {
 				panic(err)
@@ -196,16 +199,19 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 				var first_name string
 				var last_name string
 				var email string
+				var phone_number string
+				var city string
+				var batch int
 				var section_1_score int
 				var section_2_score int
 				var section_3_score	int
 				var total_score int
 				var result models.UserResult
-				err := pass_list.Scan(&first_name, &last_name, &email, &section_1_score, &section_2_score, &section_3_score, &total_score)
+				err := pass_list.Scan(&first_name, &last_name, &email, &phone_number, &city, &batch, &section_1_score, &section_2_score, &section_3_score, &total_score)
 				if err != nil {
 					panic(err)
 				}
-				result = models.UserResult{first_name, last_name, email, section_1_score, section_2_score, section_3_score, total_score}
+				result = models.UserResult{first_name, last_name, email, phone_number, city, batch, section_1_score, section_2_score, section_3_score, total_score}
 				all_user_results = append(all_user_results, result)
 				total_users = total_users + 1
 			}

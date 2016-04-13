@@ -83,7 +83,8 @@ batch int,
 section_1 int DEFAULT 0,
 section_2 int DEFAULT 0,
 section_3 int DEFAULT 0,
-total_score int DEFAULT 0
+total_score int DEFAULT 0,
+test_finished boolean DEFAULT 'no'
 );
 ```
 

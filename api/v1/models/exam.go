@@ -34,6 +34,9 @@ type UserResult struct {
 	First_name string
 	Last_name string
 	Email string
+	Phone_number string
+	City string
+	Batch int
 	Section_1_score int
 	Section_2_score int
 	Section_3_score int
