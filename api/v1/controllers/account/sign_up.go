@@ -150,8 +150,8 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 							panic(err)
 						}
 						id = id + 1
-
-						var sStmt string = "insert into users (id, first_name, last_name, email, college, branch, phone_number, year_of_passing, password, password_confirmation, role) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,'user')"
+						created_at := time.Now()
+						var sStmt string = "insert into users (id, first_name, last_name, email, college, branch, phone_number, year_of_passing, city, password, password_confirmation, created_at, batch, role) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)"
 						db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
 						if err != nil {
 							panic(err)
@@ -169,7 +169,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 						encrypt_password := controllers.Encrypt(key, password)
 						encrypt_password_confirmation := controllers.Encrypt(key, confirm_password)
 
-						user_res, err := stmt.Exec(id, u.First_name, u.Last_name, u.Email, u.College, u.Branch, u.Phone_number, u.Year_of_passing, encrypt_password, encrypt_password_confirmation)
+						user_res, err := stmt.Exec(id, u.First_name, u.Last_name, u.Email, u.College, u.Branch, u.Phone_number, u.Year_of_passing, u.City, encrypt_password, encrypt_password_confirmation, created_at, u.Batch,"user")
 						if err != nil || user_res == nil {
 							panic(err)
 						}
@@ -193,7 +193,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 							panic(err)
 						}
 						db.Close()
-						user := models.Register{id, u.First_name, u.Last_name, u.Email, u.Password, u.Password_confirmation, u.College, u.Branch, u.Year_of_passing, u.Phone_number}
+						user := models.Register{id, u.First_name, u.Last_name, u.Email, u.Password, u.Password_confirmation, u.College, u.Branch, u.Year_of_passing, u.City, u.Phone_number, u.Batch}
 
 						b, err := json.Marshal(models.SignUp{
 							Success: "true",
