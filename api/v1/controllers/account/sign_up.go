@@ -186,6 +186,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 						if err != nil {
 							panic(err)
 						}
+						defer ses.Close()
 						start_time := time.Now()
 						session_res, err := ses.Exec(start_time, id, string(auth_token))
 						if err != nil || session_res == nil {
