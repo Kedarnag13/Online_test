@@ -182,17 +182,17 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 						io.WriteString(h, auth_string)
 						auth_token := hex.EncodeToString(h.Sum(nil))
 						var session string = "insert into sessions (start_time, user_id, auth_token) values ($1,$2,$3)"
-						ses, err := db.Prepare(session)
+						prepare_session, err := db.Prepare(session)
 						if err != nil {
 							panic(err)
 						}
-						defer ses.Close()
+						defer prepare_session.Close()
 						start_time := time.Now()
-						session_res, err := ses.Exec(start_time, id, string(auth_token))
+						session_res, err := prepare_session.Exec(start_time, id, string(auth_token))
 						if err != nil || session_res == nil {
 							panic(err)
 						}
-
+						db.Close()
 						user := models.Register{id, u.First_name, u.Last_name, u.Email, u.Password, u.Password_confirmation, u.College, u.Branch, u.Year_of_passing, u.Phone_number}
 
 						b, err := json.Marshal(models.SignUp{
