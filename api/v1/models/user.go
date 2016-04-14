@@ -15,7 +15,9 @@ type Register struct {
 	College								string `valid:"alphanum,required"`
 	Branch                string `valid:"alphanum",required`
 	Year_of_passing				string `valid:"alphanum",required`
+	City									string `valid:"alphanum",required`
 	Phone_number					string `required`
+	Batch									string `valid:"alphanum",required`
 }
 
 
@@ -76,7 +78,6 @@ type InviteEmail struct {
 type LogIn struct {
 	Phone_number string `valid:"required"`
 	Password string `valid:"alphanum,required"`
-	Role string `valid:"alphanum,required"`
 }
 
 type LogOut struct {
@@ -88,6 +89,7 @@ type SuccessfulLogIn struct {
 	Success string
 	Message string
 	User_id int
+	User_role string
 	Session Session
 }
 

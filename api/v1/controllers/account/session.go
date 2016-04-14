@@ -34,6 +34,11 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 
 	err = json.Unmarshal(body, &l)
 
+	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+	if err != nil {
+		panic(err)
+	}
+
 	if l.Phone_number == "" || l.Password == ""  {
 
 		_, err := govalidator.ValidateStruct(l)
@@ -54,11 +59,7 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 
 		goto user_login_end
 		}else {
-			db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
-			if err != nil {
-				panic(err)
-			}
-			get_user_id, err := db.Query("SELECT id, first_name, last_name, email, phone_number, password FROM users WHERE phone_number=$1 AND role = $2", l.Phone_number, l.Role)
+			get_user_id, err := db.Query("SELECT id, first_name, last_name, email, phone_number, role, password FROM users WHERE phone_number=$1", l.Phone_number)
 			if err != nil {
 				panic(err)
 			}
@@ -74,8 +75,9 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 				var email string
 				var db_password string
 				var phone_number string
+				var role string
 
-				err := get_user_id.Scan(&id, &first_name, &last_name, &email, &phone_number, &db_password)
+				err := get_user_id.Scan(&id, &first_name, &last_name, &email, &phone_number, &role, &db_password)
 				if err != nil {
 					panic(err)
 				}
@@ -129,8 +131,9 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 
 					b, err := json.Marshal(models.SuccessfulLogIn{
 						Success: "true",
-						Message: "User Logged in Successfully!",
+						Message: "Logged in Successfully!",
 						User_id: id,
+						User_role: role,
 						Session: models.Session{id, start_time, string(auth_token)},
 					})
 
@@ -155,19 +158,7 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 
 					goto user_login_end
 				}
-
-				if flag == 0 && l.Role == "admin"{
-					b, err := json.Marshal(models.ErrorMessage{
-						Success: "false",
-						Error:   "Give valid admin credentials",
-					})
-
-					if err != nil {
-						panic(err)
-					}
-					rw.Header().Set("Content-Type", "application/json")
-					rw.Write(b)
-				}else {
+				if flag == 0 {
 					b, err := json.Marshal(models.ErrorMessage{
 						Success: "false",
 						Error:   "User does not exist",
@@ -182,31 +173,32 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 				db.Close()
 			}
 			user_login_end:
+			db.Close()
 		}
 
 
-func (s sessionController) Destroy(rw http.ResponseWriter, req *http.Request) {
+		func (s sessionController) Destroy(rw http.ResponseWriter, req *http.Request) {
 
-	vars := mux.Vars(req)
-	auth_token := vars["auth_token"]
-	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
-	if err != nil {
-		panic(err)
-	}
-	delete_session, err := db.Query("DELETE FROM SESSIONS WHERE auth_token=$1", auth_token)
-	if err != nil || delete_session == nil {
-		panic(err)
-	}
-	defer delete_session.Close()
-	b, err := json.Marshal(models.ErrorMessage{
-		Success: "true",
-		Error:   "Session destroyed successfully.",
-	})
+			vars := mux.Vars(req)
+			auth_token := vars["auth_token"]
+			db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+			if err != nil {
+				panic(err)
+			}
+			delete_session, err := db.Query("DELETE FROM SESSIONS WHERE auth_token=$1", auth_token)
+			if err != nil || delete_session == nil {
+				panic(err)
+			}
+			defer delete_session.Close()
+			b, err := json.Marshal(models.ErrorMessage{
+				Success: "true",
+				Error:   "Session destroyed successfully.",
+			})
 
-	if err != nil {
-		panic(err)
-	}
-	rw.Header().Set("Content-Type", "application/json")
-	rw.Write(b)
-	db.Close()
-}
+			if err != nil {
+				panic(err)
+			}
+			rw.Header().Set("Content-Type", "application/json")
+			rw.Write(b)
+			db.Close()
+		}
