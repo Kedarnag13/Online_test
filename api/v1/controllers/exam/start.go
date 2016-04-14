@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"strconv"
+	"fmt"
 )
 
 type examController struct{}
@@ -31,11 +32,12 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 	if err != nil || questions == nil {
 		panic(err)
 	}
-	get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4 FROM questions WHERE section_id=$1 order by random() LIMIT 20", section_id)
+	get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4 FROM questions WHERE section_id=$1 order by random() LIMIT 20 ", section_id)
 	if err != nil || get_questions == nil {
 		panic(err)
 	}
 	defer get_questions.Close()
+	db.Close()
 
 	questions_section := []models.Question{}
 
@@ -54,6 +56,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 		if err != nil {
 			panic(err)
 		}
+		fmt.Println("Question_id",id)
 		options = append(options, option_1)
 		options = append(options, option_2)
 		options = append(options, option_3)

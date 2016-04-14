@@ -22,7 +22,7 @@ city varchar(100),
 password varchar(100),
 password_confirmation varchar(100),
 phone_number varchar(100),
-batch int,
+batch varchar(100),
 role varchar(50),
 created_at timestamptz,
 year_of_passing varchar(4),
@@ -84,6 +84,8 @@ section_1 int DEFAULT 0,
 section_2 int DEFAULT 0,
 section_3 int DEFAULT 0,
 total_score int DEFAULT 0,
+start_time timestamptz,
+end_time timestamptz,
 test_finished boolean DEFAULT 'no'
 );
 ```

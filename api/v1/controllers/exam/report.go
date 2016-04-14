@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"io/ioutil"
 	"fmt"
+	"time"
 )
 
 type resultController struct{}
@@ -56,6 +57,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 	defer user_details.Close()
+	
 	var first_name string
 	var last_name string
 	var email string
@@ -74,10 +76,10 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 				panic(err)
 			}
 			defer check_result_exist.Close()
-
+			start_time := time.Now()
 			for check_result_exist.Next(){
 				fmt.Println("Updating Section 1 results")
-				update_section1_results, err := db.Query("UPDATE results SET section_1= $1 where user_id = $2", score, u.UserId)
+				update_section1_results, err := db.Query("UPDATE results SET section_1= $1, start_time = $2 where user_id = $3", score, start_time, u.UserId)
 				if err != nil || update_section1_results == nil {
 					panic(err)
 				}
@@ -95,7 +97,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 				goto update_results_end
 			}
 			fmt.Println("Creating and inserting Section 1 results")
-			var insert_result string = "insert into results (user_id, section_1, first_name, last_name, email, phone_number, city, batch) values ($1,$2,$3,$4,$5,$6,$7,$8)"
+			var insert_result string = "insert into results (user_id, section_1, first_name, last_name, email, phone_number, city, batch, start_time) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
 			prepare_insert_result, err := db.Prepare(insert_result)
 			if err != nil {
 				panic(err)
@@ -103,7 +105,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 
 			defer prepare_insert_result.Close()
 
-			insert_result_exec, err := prepare_insert_result.Exec(u.UserId, score, first_name, last_name, email, phone_number, city, batch)
+			insert_result_exec, err := prepare_insert_result.Exec(u.UserId, score, first_name, last_name, email, phone_number, city, batch, start_time)
 			if err != nil || insert_result_exec == nil {
 				panic(err)
 			}
@@ -134,8 +136,8 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 					}
 
 					total_score := section_1_score + section_2_score + score
-
-					update_result, err := db.Query("UPDATE results SET section_3=$1, total_score = $2, test_finished = $3 where user_id = $4", score, total_score, true, u.UserId)
+					end_time := time.Now()
+					update_result, err := db.Query("UPDATE results SET section_3=$1, total_score = $2, test_finished = $3, end_time = $4 where user_id = $5", score, total_score, true, end_time, u.UserId)
 					if err != nil || update_result == nil {
 						panic(err)
 					}
@@ -188,7 +190,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 			if err != nil {
 				panic(err)
 			}
-			pass_list, err := db.Query("Select first_name, last_name, email, phone_number, city, batch, section_1, section_2, section_3, total_score from results where test_finished = true", )
+			pass_list, err := db.Query("Select first_name, last_name, email, phone_number, city, batch, section_1, section_2, section_3, total_score, start_time, end_time from results where test_finished = true", )
 			defer pass_list.Close()
 			if err != nil {
 				panic(err)
@@ -201,17 +203,19 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 				var email string
 				var phone_number string
 				var city string
-				var batch int
+				var batch string
 				var section_1_score int
 				var section_2_score int
 				var section_3_score	int
 				var total_score int
+				var start_time time.Time
+				var end_time time.Time
 				var result models.UserResult
-				err := pass_list.Scan(&first_name, &last_name, &email, &phone_number, &city, &batch, &section_1_score, &section_2_score, &section_3_score, &total_score)
+				err := pass_list.Scan(&first_name, &last_name, &email, &phone_number, &city, &batch, &section_1_score, &section_2_score, &section_3_score, &total_score, &start_time, &end_time)
 				if err != nil {
 					panic(err)
 				}
-				result = models.UserResult{first_name, last_name, email, phone_number, city, batch, section_1_score, section_2_score, section_3_score, total_score}
+				result = models.UserResult{first_name, last_name, email, phone_number, city, batch, section_1_score, section_2_score, section_3_score, total_score, start_time, end_time}
 				all_user_results = append(all_user_results, result)
 				total_users = total_users + 1
 			}
