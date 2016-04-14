@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"strconv"
-	"fmt"
+	"log"
 )
 
 type examController struct{}
@@ -56,7 +56,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println("Question_id",id)
+		log.Printf("Question_id:%v",id)
 		options = append(options, option_1)
 		options = append(options, option_2)
 		options = append(options, option_3)

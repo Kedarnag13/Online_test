@@ -15,7 +15,7 @@ import (
 	"crypto/md5"
 	"net/http"
 	"encoding/hex"
-	"fmt"
+	"log"
 )
 
 type sessionController struct{}
@@ -126,8 +126,8 @@ func (s sessionController) Create(rw http.ResponseWriter, req *http.Request) {
 					if err != nil || session_res == nil {
 						panic(err)
 					}
-					fmt.Printf("StartTime: %v\n", time.Now())
-					fmt.Println("User Logged in Successfully!")
+					log.Printf("StartTime: %v\n", time.Now())
+					log.Printf("User Logged in Successfully!")
 
 					b, err := json.Marshal(models.SuccessfulLogIn{
 						Success: "true",
