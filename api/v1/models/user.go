@@ -54,25 +54,6 @@ type Session struct {
 
 // Sign_up struct end
 
-type UserDetails struct {
-	Id                 int
-	Firstname          string
-	Lastname           string
-	Email              string
-	User_thumbnail     string
-	User_thumbnail_web string
-}
-
-type Notification struct {
-	SenderId   int `valid:"numeric,required"`
-	RecieverId int `valid:"numeric,required"`
-}
-
-type InviteEmail struct {
-	SenderId      int    `valid:"numeric,required"`
-	RecieverEmail string `valid:"email,required"`
-}
-
 // Log_in struct
 
 type LogIn struct {
@@ -95,18 +76,10 @@ type SuccessfulLogIn struct {
 
 
 // Message struct [controllers/account]
-// Common for sign_up, session and password
 type Message struct {
 	Success string
 	Message string
 	User    Register
-}
-
-
-type EmailMessage struct {
-	Success string
-	Message string
-	User    InviteEmail
 }
 
 type PasswordErrorMessage struct {
@@ -122,43 +95,6 @@ type EmailErrorMessage struct {
 type PhoneNumberErrorMessage struct {
 	Success string
 	Phone_number_error   string
-}
-
-// User profile Struct
-type Profile struct {
-	Id                    int    `valid:"numeric,required"`
-	Firstname             string `valid:"alphanum,required"`
-	Lastname              string `valid:"alphanum,required"`
-	Password              string `valid:"alphanum,required"`
-	Password_confirmation string `valid:"alphanum,required"`
-	City                  string `valid:"alphanum"`
-	State                 string `valid:"alphanum"`
-	Country               string `valid:"alphanum"`
-	User_thumbnail        string `valid:"alphanum"`
-	Description           string `valid:"alphanum"`
-}
-
-type ProfileMessage struct {
-	Success string
-	Message string
-	User    Profile
-}
-
-type ProfileErrorMessage struct {
-	Success string
-	Error   string
-}
-
-type UserListMessage struct {
-	Success  string
-	Message  string
-	User_ids []int
-}
-
-type UserList struct {
-	Success      string
-	No_Of_Users  int
-	User_Details []UserDetails
 }
 
 type AdminSuccessMessage struct {

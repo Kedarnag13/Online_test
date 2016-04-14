@@ -7,8 +7,8 @@ import (
 	_ "github.com/lib/pq"
 	"net/http"
 	"io/ioutil"
-	"fmt"
 	"time"
+	"log"
 )
 
 type resultController struct{}
@@ -32,9 +32,9 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 	}
 
 	score := 0
-	fmt.Println("section_id:",u.SectionId)
+	log.Printf("section_id:%v",u.SectionId)
 	for _, i:= range u.Questions {
-		fmt.Println("questions:",i.QuestionId)
+		log.Printf("questions:%v",i.QuestionId)
 		check_section, err := db.Query("SELECT answer FROM questions WHERE section_id = $1 AND id = $2",u.SectionId,i.QuestionId)
 		if err != nil || check_section == nil {
 			panic(err)
@@ -63,7 +63,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 	var email string
 	var phone_number string
 	var city string
-	var batch int
+	var batch string
 
 	for user_details.Next(){
 		err := user_details.Scan(&first_name, &last_name, &email, &phone_number, &city, &batch)
@@ -78,7 +78,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 			defer check_result_exist.Close()
 			start_time := time.Now()
 			for check_result_exist.Next(){
-				fmt.Println("Updating Section 1 results")
+				log.Printf("Updating Section 1 results")
 				update_section1_results, err := db.Query("UPDATE results SET section_1= $1, start_time = $2 where user_id = $3", score, start_time, u.UserId)
 				if err != nil || update_section1_results == nil {
 					panic(err)
@@ -96,7 +96,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 				rw.Write(b)
 				goto update_results_end
 			}
-			fmt.Println("Creating and inserting Section 1 results")
+			log.Printf("Creating and inserting Section 1 results")
 			var insert_result string = "insert into results (user_id, section_1, first_name, last_name, email, phone_number, city, batch, start_time) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
 			prepare_insert_result, err := db.Prepare(insert_result)
 			if err != nil {
@@ -111,14 +111,14 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 			}
 
 			} else if u.SectionId == 2 {
-				fmt.Println("Updating Section 2 results")
+				log.Printf("Updating Section 2 results")
 				update_result, err := db.Query("UPDATE results SET section_2=$1 where user_id=$2", score, u.UserId)
 				if err != nil || update_result == nil {
 					panic(err)
 				}
 				defer update_result.Close()
 				} else {
-					fmt.Println("Updating Section 3 results")
+					log.Printf("Updating Section 3 results")
 					fetch_score, err := db.Query("SELECT section_1, section_2 from results where user_id = $1", u.UserId)
 					if err != nil || fetch_score == nil {
 						panic(err)

@@ -14,7 +14,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"regexp"
-	"fmt"
+	"log"
 	"encoding/hex"
 )
 
@@ -259,7 +259,7 @@ func (r registrationController) Create(rw http.ResponseWriter, req *http.Request
 					key := []byte("traveling is fun")
 					password := []byte("Qwinix123")
 					encrypt_password := controllers.Encrypt(key, password)
-					fmt.Println("user_id",user_id)
+					log.Printf("user_id:%v",user_id)
 					_, err = db.Query("INSERT into USERS(id, first_name, last_name, email, password, phone_number, role) VALUES($1, 'Qwinix', 'admin', 'qwinixadmin@yopmail.com', $2, '1111111111', 'admin')", user_id, encrypt_password)
 					if err != nil {
 						panic(err)
