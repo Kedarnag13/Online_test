@@ -63,11 +63,6 @@ type UserDetails struct {
 	User_thumbnail_web string
 }
 
-type Notification struct {
-	SenderId   int `valid:"numeric,required"`
-	RecieverId int `valid:"numeric,required"`
-}
-
 type InviteEmail struct {
 	SenderId      int    `valid:"numeric,required"`
 	RecieverEmail string `valid:"email,required"`
@@ -122,43 +117,6 @@ type EmailErrorMessage struct {
 type PhoneNumberErrorMessage struct {
 	Success string
 	Phone_number_error   string
-}
-
-// User profile Struct
-type Profile struct {
-	Id                    int    `valid:"numeric,required"`
-	Firstname             string `valid:"alphanum,required"`
-	Lastname              string `valid:"alphanum,required"`
-	Password              string `valid:"alphanum,required"`
-	Password_confirmation string `valid:"alphanum,required"`
-	City                  string `valid:"alphanum"`
-	State                 string `valid:"alphanum"`
-	Country               string `valid:"alphanum"`
-	User_thumbnail        string `valid:"alphanum"`
-	Description           string `valid:"alphanum"`
-}
-
-type ProfileMessage struct {
-	Success string
-	Message string
-	User    Profile
-}
-
-type ProfileErrorMessage struct {
-	Success string
-	Error   string
-}
-
-type UserListMessage struct {
-	Success  string
-	Message  string
-	User_ids []int
-}
-
-type UserList struct {
-	Success      string
-	No_Of_Users  int
-	User_Details []UserDetails
 }
 
 type AdminSuccessMessage struct {

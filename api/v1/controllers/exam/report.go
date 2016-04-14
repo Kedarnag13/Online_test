@@ -57,13 +57,13 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 	defer user_details.Close()
-	
+
 	var first_name string
 	var last_name string
 	var email string
 	var phone_number string
 	var city string
-	var batch int
+	var batch string
 
 	for user_details.Next(){
 		err := user_details.Scan(&first_name, &last_name, &email, &phone_number, &city, &batch)

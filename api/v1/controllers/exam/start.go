@@ -32,7 +32,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 	if err != nil || questions == nil {
 		panic(err)
 	}
-	get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4 FROM questions WHERE section_id=$1 order by random() LIMIT 20 ", section_id)
+	get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4 FROM questions WHERE section_id=$1 GROUP BY id ORDER BY random() LIMIT 20", section_id)
 	if err != nil || get_questions == nil {
 		panic(err)
 	}
