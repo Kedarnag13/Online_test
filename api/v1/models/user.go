@@ -54,20 +54,6 @@ type Session struct {
 
 // Sign_up struct end
 
-type UserDetails struct {
-	Id                 int
-	Firstname          string
-	Lastname           string
-	Email              string
-	User_thumbnail     string
-	User_thumbnail_web string
-}
-
-type InviteEmail struct {
-	SenderId      int    `valid:"numeric,required"`
-	RecieverEmail string `valid:"email,required"`
-}
-
 // Log_in struct
 
 type LogIn struct {
@@ -90,18 +76,10 @@ type SuccessfulLogIn struct {
 
 
 // Message struct [controllers/account]
-// Common for sign_up, session and password
 type Message struct {
 	Success string
 	Message string
 	User    Register
-}
-
-
-type EmailMessage struct {
-	Success string
-	Message string
-	User    InviteEmail
 }
 
 type PasswordErrorMessage struct {
