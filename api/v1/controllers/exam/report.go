@@ -57,7 +57,7 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 	defer user_details.Close()
-	
+
 	var first_name string
 	var last_name string
 	var email string
