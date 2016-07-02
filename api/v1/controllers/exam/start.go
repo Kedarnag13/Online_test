@@ -7,7 +7,6 @@ import (
 	_ "github.com/lib/pq"
 	"net/http"
 	"github.com/gorilla/mux"
-	"strconv"
 	"log"
 )
 
@@ -18,12 +17,9 @@ var Exam examController
 func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 
 	vars := mux.Vars(req)
-	id := vars["id"]
-	section_id, err := strconv.Atoi(id)
-	if err != nil {
-		panic(err)
-	}
+	section_name := vars["id"]
 
+	log.Printf("section_name: %v",section_name)
 	db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
 	if err != nil {
 		panic(err)
@@ -32,6 +28,20 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 	if err != nil || questions == nil {
 		panic(err)
 	}
+	get_section_id, err := db.Query("SELECT id from sections where name = $1", section_name)
+	if err != nil || get_section_id == nil {
+		panic(err)
+	}
+	defer get_section_id.Close()
+
+	var section_id int
+	for get_section_id.Next(){
+		err := get_section_id.Scan(&section_id)
+		if err != nil {
+			panic(err)
+		}
+	}
+
 	get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4 FROM questions WHERE section_id=$1 GROUP BY id ORDER BY random() LIMIT 20", section_id)
 	if err != nil || get_questions == nil {
 		panic(err)
@@ -56,7 +66,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		log.Printf("Question_id:%v",id)
+		log.Printf("fetch Question_id:%v",id)
 		options = append(options, option_1)
 		options = append(options, option_2)
 		options = append(options, option_3)
@@ -68,7 +78,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 	b, err := json.Marshal(models.QuestionResponseMessage{
 		Success:     "true",
 		Message:     "Questions per section",
-		SectionId: 	section_id,
+		SectionName: 	section_name,
 		QuestionList:	questions_section,
 	})
 	if err != nil {

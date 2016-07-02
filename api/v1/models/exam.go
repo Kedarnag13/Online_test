@@ -11,11 +11,11 @@ type Question struct {
 type QuestionResponseMessage struct {
 	Success string
 	Message string
-	SectionId int
+	SectionName string
 	QuestionList []Question
 }
 type QuestionResponse struct {
-	SectionId int
+	SectionName string
 	UserId int
 	Questions []Answer
 }

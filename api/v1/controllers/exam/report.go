@@ -31,22 +31,38 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 		panic(err)
 	}
 
+	get_section_id, err := db.Query("SELECT id from sections where name = $1", u.SectionName)
+	if err != nil || get_section_id == nil {
+		panic(err)
+	}
+	defer get_section_id.Close()
+
+	var section_id int
+	for get_section_id.Next(){
+		err := get_section_id.Scan(&section_id)
+		if err != nil {
+			panic(err)
+		}
+	}
+
 	score := 0
-	log.Printf("section_id:%v",u.SectionId)
+	log.Printf("result section_name: %v",u.SectionName)
 	for _, i:= range u.Questions {
-		log.Printf("questions:%v",i.QuestionId)
-		check_section, err := db.Query("SELECT answer FROM questions WHERE section_id = $1 AND id = $2",u.SectionId,i.QuestionId)
+		log.Printf("result questions: %v",i.QuestionId)
+		check_section, err := db.Query("SELECT answer FROM questions WHERE section_id = $1 AND id = $2",section_id,i.QuestionId)
 		if err != nil || check_section == nil {
 			panic(err)
 		}
 		defer check_section.Close()
 		for check_section.Next(){
+			log.Printf("inside check_section")
 			var answer string
 			err := check_section.Scan(&answer)
 			if err != nil {
 				panic(err)
 			}
 			if answer == i.Answer {
+				log.Printf("correct answer")
 				score = score + 1
 			}
 		}
@@ -66,16 +82,17 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 	var batch string
 
 	for user_details.Next(){
+		log.Printf("fetching user details")
 		err := user_details.Scan(&first_name, &last_name, &email, &phone_number, &city, &batch)
 		if err != nil {
 			panic(err)
 		}
-		if u.SectionId == 1 {
-			check_result_exist, err := db.Query("SELECT user_id from results where user_id = $1", u.UserId)
-			if err != nil {
-				panic(err)
-			}
-			defer check_result_exist.Close()
+		check_result_exist, err := db.Query("SELECT user_id from results where user_id = $1", u.UserId)
+		if err != nil {
+			panic(err)
+		}
+		defer check_result_exist.Close()
+		if section_id == 1 {
 			start_time := time.Now()
 			for check_result_exist.Next(){
 				log.Printf("Updating Section 1 results")
@@ -84,8 +101,9 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 					panic(err)
 				}
 				defer update_section1_results.Close()
+				calculate_total_score(u.UserId)
 				b, err := json.Marshal(models.Result{
-					Section:     u.SectionId,
+					Section:  section_id,
 					TotalQuestions: 20,
 					Score:	score,
 				})
@@ -109,42 +127,21 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 			if err != nil || insert_result_exec == nil {
 				panic(err)
 			}
+			calculate_total_score(u.UserId)
 
-			} else if u.SectionId == 2 {
-				log.Printf("Updating Section 2 results")
-				update_result, err := db.Query("UPDATE results SET section_2=$1 where user_id=$2", score, u.UserId)
-				if err != nil || update_result == nil {
-					panic(err)
-				}
-				defer update_result.Close()
-				} else {
-					log.Printf("Updating Section 3 results")
-					fetch_score, err := db.Query("SELECT section_1, section_2 from results where user_id = $1", u.UserId)
-					if err != nil || fetch_score == nil {
-						panic(err)
-					}
-					defer fetch_score.Close()
-
-					var section_1_score int
-					var section_2_score int
-
-					for fetch_score.Next() {
-						err := fetch_score.Scan(&section_1_score, &section_2_score)
-						if err != nil {
-							panic(err)
-						}
-					}
-
-					total_score := section_1_score + section_2_score + score
-					end_time := time.Now()
-					update_result, err := db.Query("UPDATE results SET section_3=$1, total_score = $2, test_finished = $3, end_time = $4 where user_id = $5", score, total_score, true, end_time, u.UserId)
+			} else if section_id == 2 {
+				start_time := time.Now()
+				for check_result_exist.Next(){
+					log.Printf("Updating Section 2 results")
+					update_result, err := db.Query("UPDATE results SET section_2=$1 where user_id=$2", score, u.UserId)
 					if err != nil || update_result == nil {
 						panic(err)
 					}
 					defer update_result.Close()
-				}
+					calculate_total_score(u.UserId)
+
 					b, err := json.Marshal(models.Result{
-						Section:     u.SectionId,
+						Section: section_id,
 						TotalQuestions: 20,
 						Score:	score,
 					})
@@ -154,6 +151,70 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 					rw.Header().Set("Content-Type", "application/json")
 					rw.Write(b)
 					goto update_results_end
+				}
+				log.Printf("Creating and inserting Section 2 results")
+				var insert_result string = "insert into results (user_id, section_2, first_name, last_name, email, phone_number, city, batch, start_time) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
+				prepare_insert_result, err := db.Prepare(insert_result)
+				if err != nil {
+					panic(err)
+				}
+
+				defer prepare_insert_result.Close()
+
+				insert_result_exec, err := prepare_insert_result.Exec(u.UserId, score, first_name, last_name, email, phone_number, city, batch, start_time)
+				if err != nil || insert_result_exec == nil {
+					panic(err)
+				}
+				calculate_total_score(u.UserId)
+				} else {
+					start_time := time.Now()
+					for check_result_exist.Next(){
+						log.Printf("Updating Section 3 results")
+						update_result, err := db.Query("UPDATE results SET section_3=$1 where user_id=$2", score, u.UserId)
+						if err != nil || update_result == nil {
+							panic(err)
+						}
+						defer update_result.Close()
+						calculate_total_score(u.UserId)
+
+						b, err := json.Marshal(models.Result{
+							Section: section_id,
+							TotalQuestions: 20,
+							Score:	score,
+						})
+						if err != nil {
+							panic(err)
+						}
+						rw.Header().Set("Content-Type", "application/json")
+						rw.Write(b)
+						goto update_results_end
+					}
+					log.Printf("Creating and inserting Section 3 results")
+					var insert_result string = "insert into results (user_id, section_3, first_name, last_name, email, phone_number, city, batch, start_time) values ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
+					prepare_insert_result, err := db.Prepare(insert_result)
+					if err != nil {
+						panic(err)
+					}
+
+					defer prepare_insert_result.Close()
+
+					insert_result_exec, err := prepare_insert_result.Exec(u.UserId, score, first_name, last_name, email, phone_number, city, batch, start_time)
+					if err != nil || insert_result_exec == nil {
+						panic(err)
+					}
+					calculate_total_score(u.UserId)
+				}
+				b, err := json.Marshal(models.Result{
+					Section: section_id,
+					TotalQuestions: 20,
+					Score:	score,
+				})
+				if err != nil {
+					panic(err)
+				}
+				rw.Header().Set("Content-Type", "application/json")
+				rw.Write(b)
+				goto update_results_end
 			}
 			if flag == 0 {
 				b, err := json.Marshal(models.ErrorMessage{
@@ -170,6 +231,39 @@ func (e examController) Create(rw http.ResponseWriter, req *http.Request) {
 
 			update_results_end:
 			db.Close()
+		}
+
+		func calculate_total_score(user_id int){
+			db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+			if err != nil {
+				panic(err)
+			}
+
+			log.Printf("Updating final results")
+			fetch_score, err := db.Query("SELECT section_1, section_2, section_3 from results where user_id = $1", user_id)
+			if err != nil || fetch_score == nil {
+				panic(err)
+			}
+			defer fetch_score.Close()
+
+			var section_1_score int
+			var section_2_score int
+			var section_3_score int
+
+			for fetch_score.Next() {
+				err := fetch_score.Scan(&section_1_score, &section_2_score, &section_3_score)
+				if err != nil {
+					panic(err)
+				}
+			}
+
+			total_score := section_1_score + section_2_score + section_3_score
+			end_time := time.Now()
+			update_result, err := db.Query("UPDATE results SET total_score = $1, test_finished = $2, end_time = $3 where user_id = $4", total_score, true, end_time, user_id)
+			if err != nil || update_result == nil {
+				panic(err)
+			}
+			defer update_result.Close()
 		}
 
 		func (e examController) Export(rw http.ResponseWriter, req *http.Request) {

@@ -17,7 +17,7 @@ go	r.HandleFunc("/create_admin", account.Registration.CreateAdmin).Methods("POST
 go	r.HandleFunc("/log_in", account.Session.Create).Methods("POST")
 go	r.HandleFunc("/delete/{auth_token:[A-Za-z0-9]+}", account.Session.Destroy).Methods("GET")
 go	r.HandleFunc("/section/evaluate", exam.Result.Create).Methods("POST")
-go	r.HandleFunc("/questions/{id:[0-9]+}", exam.Exam.Questions).Methods("GET")
+go	r.HandleFunc("/questions/{id:[A-Za-z0-9]+}", exam.Exam.Questions).Methods("GET")
 go	r.HandleFunc("/feedback", feedback.Feedback.Create).Methods("POST")
 go	r.HandleFunc("/export_csv", exam.Result.Export).Methods("GET")
 go	r.HandleFunc("/results", exam.Result.ResultList).Methods("GET")
