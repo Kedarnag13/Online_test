@@ -8,6 +8,7 @@ _ "github.com/lib/pq"
 "net/http"
 "io/ioutil"
 "log"
+"fmt"
 )
 
 type questionController struct{}
@@ -83,7 +84,7 @@ func (q questionController) Create(rw http.ResponseWriter, req *http.Request) {
   }
 }
 
-func (q questionController) AllQuestions(rw http.ResponseWriter, req *http.Request) { 
+func (q questionController) AllQuestions(rw http.ResponseWriter, req *http.Request) {
 
 
   db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
@@ -125,11 +126,53 @@ func (q questionController) AllQuestions(rw http.ResponseWriter, req *http.Reque
     Success:     "true",
     Message:     "Questions per section",
     QuestionList: all_questions,
-  })
+    })
   if err != nil {
     panic(err)
   }
   rw.Header().Set("Content-Type", "application/json")
   rw.Write(b)
   db.Close()
+}
+
+func (q questionController) Edit(rw http.ResponseWriter, req *http.Request) {
+
+  body, err := ioutil.ReadAll(req.Body)
+  if err != nil {
+    panic(err)
+  }
+
+  var u models.EditQuestion
+
+  err = json.Unmarshal(body, &u)
+  if err != nil {
+    panic(err)
+  }
+
+  db, err := sql.Open("postgres", "password=password host=localhost dbname=online_test_dev sslmode=disable")
+  if err != nil {
+    panic(err)
+  }
+  questions, err:= db.Exec("CREATE TABLE IF NOT EXISTS questions(id int, title text, option_1 varchar(100), option_2 varchar(100), option_3 varchar(100), option_4 varchar(100), answer varchar(100), section_id int, CONSTRAINT section_id_key FOREIGN KEY(section_id) REFERENCES sections (id), PRIMARY KEY(id))")
+  if err != nil || questions == nil {
+    panic(err)
+  }
+
+  fmt.Println("Question:",u.Question)
+  fmt.Println("id:",u.Id)
+  update_question, err := db.Query("UPDATE questions SET title = $1, option_1 = $2, option_2 = $3, option_3 = $4, option_4 = $5, answer = $6 where id = $7", u.Question, u.OptionA, u.OptionB, u.OptionC, u.OptionD, u.Answer, u.Id)
+  if err != nil || update_question == nil {
+    panic(err)
+  }
+  defer update_question.Close()
+
+  b, err := json.Marshal(models.UpdateQuestionMessage{
+    Success: "true",
+    Message: "Question updated Successfully!",
+    })
+  if err != nil {
+    panic(err)
+  }
+  rw.Header().Set("Content-Type", "application/json")
+  rw.Write(b)
 }
