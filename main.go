@@ -22,6 +22,7 @@ go	r.HandleFunc("/feedback", feedback.Feedback.Create).Methods("POST")
 go	r.HandleFunc("/question/create", exam.Question.Create).Methods("POST")
 go	r.HandleFunc("/question/edit", exam.Question.Edit).Methods("POST")
 go	r.HandleFunc("/question/get", exam.Question.AllQuestions).Methods("GET")
+go	r.HandleFunc("/question/delete/{id:[0-9]+}", exam.Question.DeleteQuestions).Methods("POST")
 go	r.HandleFunc("/export_csv", exam.Result.Export).Methods("GET")
 go	r.HandleFunc("/results", exam.Result.ResultList).Methods("GET")
 
