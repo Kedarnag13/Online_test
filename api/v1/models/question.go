@@ -2,6 +2,7 @@ package models
 
 type CreateQuestion struct {
   Section string `valid:"alphanum,required"`
+  Image string `valid:"alphanum"`
   Question string `valid:"duck,required"`
   OptionA string `valid:"duck,required"`
   OptionB string `valid:"duck,required"`
@@ -19,6 +20,7 @@ type EditQuestion struct {
   OptionC string `valid:"duck,required"`
   OptionD string `valid:"duck,required"`
   Answer string `valid:"duck",required`
+  Image string `valid:"alphanum"`
   Id int
 }
 
@@ -30,6 +32,7 @@ type CreateQuestionStatusMessage struct {
 type UpdateQuestionMessage struct {
   Success string
   Message string
+  UpdatedQuestion EditQuestion
 }
 
 type FetchQuestion struct {
@@ -41,6 +44,7 @@ type FetchQuestion struct {
   Option_d string
   Answer string
   Section_id int
+  Image string
 }
 
 type FetchQuestionResponseMessage struct {

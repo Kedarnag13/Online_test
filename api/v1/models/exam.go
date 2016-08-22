@@ -5,6 +5,7 @@ import "time"
 type Question struct {
 	Id int
 	Title string
+	Image string
 	Options []string
 }
 
