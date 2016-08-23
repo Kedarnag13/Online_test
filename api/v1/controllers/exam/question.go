@@ -116,20 +116,18 @@ func (q questionController) AllQuestions(rw http.ResponseWriter, req *http.Reque
     var Answer string
     var Image string
     var Section_id int
-    var image_url string
+    var Image_url string
 
     var each_question models.FetchQuestion
 
-    err := get_all_questions.Scan(&Id, &Question, &Option_a, &Option_b, &Option_c, &Option_d, &Answer, &Section_id, &Image)
+    err := get_all_questions.Scan(&Id, &Question, &Option_a, &Option_b, &Option_c, &Option_d, &Answer, &Section_id, &Image, &Image_url)
     if err != nil {
       panic(err)
     }
-    if Image != "nil"{  
-      image_url = Fetch_question_image(Image)
-    } else {
-      image_url = "nil"
+    if Image != "nil" && Image_url == "nil"{  
+      Image_url = Fetch_image_url(Image)
     }
-    each_question = models.FetchQuestion{Id, Question, Option_a, Option_b, Option_c, Option_d, Answer, Section_id, image_url}
+    each_question = models.FetchQuestion{Id, Question, Option_a, Option_b, Option_c, Option_d, Answer, Section_id, Image_url}
     all_questions = append(all_questions, each_question)
   }
   b, err := json.Marshal(models.FetchQuestionResponseMessage{
@@ -168,14 +166,18 @@ func (q questionController) Edit(rw http.ResponseWriter, req *http.Request) {
     panic(err)
   }
 
-  update_question, err := db.Query("UPDATE questions SET title = $1, option_1 = $2, option_2 = $3, option_3 = $4, option_4 = $5, answer = $6, image = $7 where id = $8", u.Question, u.OptionA, u.OptionB, u.OptionC, u.OptionD, u.Answer, u.Image, u.Id)
+  image_url := "nil"
+
+  if u.Image != "nil" {
+    image_url = Fetch_image_url(u.Image)
+  }
+
+  update_question, err := db.Query("UPDATE questions SET title = $1, option_1 = $2, option_2 = $3, option_3 = $4, option_4 = $5, answer = $6, image = $7, image_url =$8 where id = $9", u.Question, u.OptionA, u.OptionB, u.OptionC, u.OptionD, u.Answer, u.Image, image_url, u.Id)
   if err != nil || update_question == nil {
     panic(err)
   }
   defer update_question.Close()
-  if u.Image != "nil" {
-    u.Image = Fetch_question_image(u.Image)
-  }
+
   b, err := json.Marshal(models.UpdateQuestionMessage{
     Success: "true",
     Message: "Question updated Successfully!",
@@ -219,11 +221,14 @@ func (q questionController) DeleteQuestions(rw http.ResponseWriter, req *http.Re
   rw.Header().Set("Content-Type", "application/json")
   rw.Write(b)
 
+  db.Close()
 }
 
-func Fetch_question_image(image_path string) string {
-  image_url := "nil"
-  if image_path != "" {
+func Fetch_image_url(image string) string {
+
+  var image_url string
+
+  if image != "" {
     auth := aws.Auth{
       AccessKey: os.Getenv("AWS_ACCESS_KEY_ID"),
       SecretKey: os.Getenv("AWS_SECRET_ACCESS_KEY"),
@@ -231,7 +236,7 @@ func Fetch_question_image(image_path string) string {
     euwest := aws.USWest2
     connection := s3.New(auth, euwest)
     thumbnails := connection.Bucket("q-auth")
-    public_thumbnails, err := thumbnails.List(image_path, "", "", 1000)
+    public_thumbnails, err := thumbnails.List(image, "", "", 1000)
     if err != nil {
       panic(err)
     }

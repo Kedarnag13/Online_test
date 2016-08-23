@@ -42,7 +42,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
     }
   }
 
-  get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4, image FROM questions WHERE section_id=$1 GROUP BY id ORDER BY random() LIMIT 20", section_id)
+  get_questions, err := db.Query("SELECT id, title, option_1, option_2, option_3, option_4, image, image_url FROM questions WHERE section_id=$1 GROUP BY id ORDER BY random() LIMIT 20", section_id)
   if err != nil || get_questions == nil {
     panic(err)
   }
@@ -64,7 +64,7 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
 
     var question_details models.Question
 
-    err := get_questions.Scan(&id, &title, &option_1, &option_2, &option_3, &option_4, &image)
+    err := get_questions.Scan(&id, &title, &option_1, &option_2, &option_3, &option_4, &image, &image_url)
     if err != nil {
       panic(err)
     }
@@ -74,10 +74,8 @@ func (e examController) Questions(rw http.ResponseWriter, req *http.Request) {
     options = append(options, option_3)
     options = append(options, option_4)
 
-    if image != "nil" {
-      image_url = Fetch_question_image(image)
-    }else {
-      image_url = image
+    if image != "nil" && image_url == "nil"{
+      image_url = Fetch_image_url(image)
     }
     question_details = models.Question{id, title, image_url, options}
     questions_section = append(questions_section, question_details)
